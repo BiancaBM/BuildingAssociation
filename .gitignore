@@ -3,3 +3,6 @@
 ################################################################################
 
 /BuildingAssociation/packages
+/BuildingAssociation/Repositories/bin/Debug
+/BuildingAssociation/Website/bin
+/BuildingAssociation/Website/obj/Debug
