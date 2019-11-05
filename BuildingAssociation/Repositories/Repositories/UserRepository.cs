@@ -46,7 +46,6 @@ namespace Repositories.Repositories
         public void Update(User user)
         {
             var updatedUser = Users.FirstOrDefault(x => x.UserId == user.UserId);
-            updatedUser.Guid = user.Guid;
             updatedUser.IsAdmin = user.IsAdmin;
             updatedUser.MembersCount = user.MembersCount;
             updatedUser.Name = user.Name;
