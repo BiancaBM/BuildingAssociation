@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Repositories.Contracts;
+using Repositories.Repositories;
+using Services.Contracts;
+using Services.Services;
 using System.Web.Http;
+using Unity;
 
 namespace Website
 {
@@ -10,6 +12,11 @@ namespace Website
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var container = new UnityContainer();
+            RegisterRepositories(container);
+            RegisterServices(container);
+
+            config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -19,6 +26,16 @@ namespace Website
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+        }
+
+        private static void RegisterRepositories(UnityContainer container)
+        {
+            container.RegisterType<IUserRepository, UserRepository>();
+        }
+
+        private static void RegisterServices(UnityContainer container)
+        {
+            container.RegisterType<IUserService, UserService>();
         }
     }
 }
