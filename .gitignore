@@ -7,3 +7,6 @@
 /BuildingAssociation/Website/bin
 /BuildingAssociation/Website/obj/Debug
 /BuildingAssociation/.vs/*
+/BuildingAssociation/Repositories/obj/*
+/BuildingAssociation/Services/bin/*
+/BuildingAssociation/Services/obj/*
