@@ -10,3 +10,4 @@
 /BuildingAssociation/Repositories/obj/*
 /BuildingAssociation/Services/bin/*
 /BuildingAssociation/Services/obj/*
+/BuildingAssociation/client/node_modules/*

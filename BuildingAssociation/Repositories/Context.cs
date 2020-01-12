@@ -1,4 +1,5 @@
 ﻿using Repositories.Entities;
+using System.Configuration;
 using System.Data.Entity;
 
 namespace Repositories
@@ -12,6 +13,11 @@ namespace Repositories
         public DbSet<WaterConsumption> WaterConsumptions { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<ConsumptionType> ConsumptionTypes { get; set; }
+        
+        public BuildingAssociationContext() : base("BuildingAssociation")
+        {
+
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,0 +1,7 @@
+.user-container {
+    background-color: #ddd;
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}

@@ -6,6 +6,7 @@ using System.Web.Http;
 
 namespace Website.Controllers
 {
+    [Authorize]
     public class UsersController : BaseController<User>
     {
         private IUserService _userService;

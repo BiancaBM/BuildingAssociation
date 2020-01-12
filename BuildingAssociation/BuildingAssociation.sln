@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{2AD2A560-0EDA-4F49-B21E-E015BB334CDB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{9D2F06A9-0336-4A2A-B8E3-44C0FDF1F23D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{110405E9-C703-42E1-8A02-C41660324C55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{010A23A3-97C3-49B5-9AFC-AFE0FD50522D} = {9D2F06A9-0336-4A2A-B8E3-44C0FDF1F23D}
+		{3A4E5040-CF19-4D85-BF81-2CED78ED0AF1} = {9D2F06A9-0336-4A2A-B8E3-44C0FDF1F23D}
+		{2AD2A560-0EDA-4F49-B21E-E015BB334CDB} = {9D2F06A9-0336-4A2A-B8E3-44C0FDF1F23D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C09E1115-3702-4E78-B10C-5DC02D100345}
