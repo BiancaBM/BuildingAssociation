@@ -21,8 +21,8 @@ const config: webpack.Configuration = {
         loader: "awesome-typescript-loader"
       },
       {
-        test: /\.less$/i,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       }
     ]
   },
