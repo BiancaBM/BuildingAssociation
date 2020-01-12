@@ -7,9 +7,11 @@ namespace Repositories
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Apartment> Apartments { get; set; }
-        public DbSet<Bill> Bills { get; set; }
-        public DbSet<Consumption> Consumptions { get; set; }
+        public DbSet<ProviderBill> Bills { get; set; }
+        public DbSet<UserBillItem> UserBillItems { get; set; }
+        public DbSet<WaterConsumption> WaterConsumptions { get; set; }
         public DbSet<Provider> Providers { get; set; }
+        public DbSet<ConsumptionType> ConsumptionTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

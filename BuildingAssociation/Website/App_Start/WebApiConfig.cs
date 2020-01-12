@@ -31,11 +31,20 @@ namespace Website
         private static void RegisterRepositories(UnityContainer container)
         {
             container.RegisterType<IUserRepository, UserRepository>();
+            container.RegisterType<IProviderBillRepository, ProviderBillRepository>();
+            container.RegisterType<IProviderRepository, ProviderRepository>();
+            container.RegisterType<IApartmentRepository, ApartmentRepository>();
+            container.RegisterType<IWaterConsumptionRepository, WaterConsumptionRepository>();
+
         }
 
         private static void RegisterServices(UnityContainer container)
         {
             container.RegisterType<IUserService, UserService>();
+            container.RegisterType<IProviderBillService, ProviderBillService>();
+            container.RegisterType<IProviderService, ProviderService>();
+            container.RegisterType<IApartmentService, ApartmentService>();
+            container.RegisterType<IWaterConsumptionService, WaterConsumptionService>();
         }
     }
 }

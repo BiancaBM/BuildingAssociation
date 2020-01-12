@@ -4,19 +4,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repositories.Entities
 {
-    public class Apartment : BaseEntity
+    public class WaterConsumption : BaseEntity
     {
         [Required]
-        public int Surface { get; set; }
+        public double HotWaterUnits { get; set; }
 
         [Required]
-        public int Number { get; set; }
-
-        [Required]
-        public int Floor { get; set; }
+        public double ColdWaterUnits { get; set; }
 
         [ForeignKey("User")]
         public long? UserId { get; set; }
         public User User { get; set; }
+
+        public DateTime? CreationDate { get; set; }
     }
 }

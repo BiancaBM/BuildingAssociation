@@ -20,7 +20,7 @@ namespace Repositories.Repositories
 
         public void Delete(long id)
         {
-            var apartmentToBeRemoved = Apartments.FirstOrDefault(x => x.ApartmentId == id);
+            var apartmentToBeRemoved = Apartments.FirstOrDefault(x => x.UniqueId == id);
             Apartments.Remove(apartmentToBeRemoved);
 
             _ctx.SaveChanges();
@@ -28,12 +28,12 @@ namespace Repositories.Repositories
 
         public Apartment Get(long id)
         {
-            return Apartments.FirstOrDefault(x => x.ApartmentId == id);
+            return Apartments.FirstOrDefault(x => x.UniqueId == id);
         }
 
         public IEnumerable<Apartment> Get(IEnumerable<long> ids)
         {
-            return Apartments.Where(apartment => ids.Any(id => id == apartment.ApartmentId)).ToList();
+            return Apartments.Where(apartment => ids.Any(id => id == apartment.UniqueId)).ToList();
         }
 
         public IEnumerable<Apartment> GetAll()
@@ -51,9 +51,8 @@ namespace Repositories.Repositories
 
         public void Update(Apartment apartment)
         {
-            var updatedApartment = Apartments.FirstOrDefault(x => x.ApartmentId == apartment.ApartmentId);
+            var updatedApartment = Apartments.FirstOrDefault(x => x.UniqueId == apartment.UniqueId);
             updatedApartment.Floor = apartment.Floor;
-            updatedApartment.Guid = apartment.Guid;
             updatedApartment.Number = apartment.Number;
             updatedApartment.Surface = apartment.Surface;
             updatedApartment.UserId = apartment.UserId;

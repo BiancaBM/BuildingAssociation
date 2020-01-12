@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Repositories.Contracts
 {
-    public interface IUserRepository : IBaseRepository<User>
+    public interface IWaterConsumptionRepository : IBaseRepository<WaterConsumption>
     {
     }
 }

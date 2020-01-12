@@ -5,11 +5,11 @@ using Services.Contracts;
 
 namespace Services.Services
 {
-    public class BillService : IBillService
+    public class ProviderBillService : IProviderBillService
     {
-        private IBillRepository _billRepository;
+        private IProviderBillRepository _billRepository;
 
-        public BillService(IBillRepository billRepository)
+        public ProviderBillService(IProviderBillRepository billRepository)
         {
             _billRepository = billRepository;  
         }
@@ -19,27 +19,27 @@ namespace Services.Services
             _billRepository.Delete(id);
         }
 
-        public Bill Get(long id)
+        public ProviderBill Get(long id)
         {
             return _billRepository.Get(id);
         }
 
-        public IEnumerable<Bill> Get(IEnumerable<long> ids)
+        public IEnumerable<ProviderBill> Get(IEnumerable<long> ids)
         {
             return _billRepository.Get(ids);
         }
 
-        public IEnumerable<Bill> GetAll()
+        public IEnumerable<ProviderBill> GetAll()
         {
             return _billRepository.GetAll();
         }
 
-        public Bill Insert(Bill bill)
+        public ProviderBill Insert(ProviderBill bill)
         {
             return _billRepository.Insert(bill);
         }
 
-        public void Update(Bill bill)
+        public void Update(ProviderBill bill)
         {
             _billRepository.Update(bill);
         }

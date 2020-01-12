@@ -3,13 +3,7 @@ using System.Collections.Generic;
 
 namespace Services.Contracts
 {
-    public interface IUserService
+    public interface IUserService : IBaseService<User>
     {
-        User Insert(User user);
-        User Get(long id);
-        IEnumerable<User> Get(IEnumerable<long> ids);
-        void Update(User user);
-        void Delete(long id);
-        IEnumerable<User> GetAll();
     }
 }

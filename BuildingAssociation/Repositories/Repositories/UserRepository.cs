@@ -19,7 +19,7 @@ namespace Repositories.Repositories
 
         public void Delete(long id)
         {
-            var userToBeRemoved = Users.FirstOrDefault(x => x.UserId == id);
+            var userToBeRemoved = Users.FirstOrDefault(x => x.UniqueId == id);
             Users.Remove(userToBeRemoved);
             
             _ctx.SaveChanges();
@@ -27,12 +27,12 @@ namespace Repositories.Repositories
 
         public User Get(long id)
         {
-            return Users.FirstOrDefault(x => x.UserId == id);
+            return Users.FirstOrDefault(x => x.UniqueId == id);
         }
 
         public IEnumerable<User> Get(IEnumerable<long> ids)
         {
-            return Users.Where(user => ids.Any(id => id == user.UserId)).ToList();
+            return Users.Where(user => ids.Any(id => id == user.UniqueId)).ToList();
         }
 
         public User Insert(User user)
@@ -45,7 +45,7 @@ namespace Repositories.Repositories
 
         public void Update(User user)
         {
-            var updatedUser = Users.FirstOrDefault(x => x.UserId == user.UserId);
+            var updatedUser = Users.FirstOrDefault(x => x.UniqueId == user.UniqueId);
             updatedUser.IsAdmin = user.IsAdmin;
             updatedUser.MembersCount = user.MembersCount;
             updatedUser.Name = user.Name;

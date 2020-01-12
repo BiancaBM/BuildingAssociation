@@ -19,7 +19,7 @@ namespace Repositories.Repositories
 
         public void Delete(long id)
         {
-            var providerToBeRemoved = Providers.FirstOrDefault(x => x.ProviderId == id);
+            var providerToBeRemoved = Providers.FirstOrDefault(x => x.UniqueId == id);
             Providers.Remove(providerToBeRemoved);
 
             _ctx.SaveChanges();
@@ -27,12 +27,12 @@ namespace Repositories.Repositories
 
         public Provider Get(long id)
         {
-            return Providers.FirstOrDefault(x => x.ProviderId == id);
+            return Providers.FirstOrDefault(x => x.UniqueId == id);
         }
 
         public IEnumerable<Provider> Get(IEnumerable<long> ids)
         {
-            return Providers.Where(provider => ids.Any(id => id == provider.ProviderId)).ToList();
+            return Providers.Where(provider => ids.Any(id => id == provider.UniqueId)).ToList();
         }
 
         public IEnumerable<Provider> GetAll()
@@ -50,8 +50,7 @@ namespace Repositories.Repositories
 
         public void Update(Provider provider)
         {
-            var updatedProvider = Providers.FirstOrDefault(x => x.ProviderId == provider.ProviderId);
-            updatedProvider.Guid = provider.Guid;
+            var updatedProvider = Providers.FirstOrDefault(x => x.UniqueId == provider.UniqueId);
             updatedProvider.Name = provider.Name;
             updatedProvider.BankAccount = provider.BankAccount;
             updatedProvider.CUI = provider.CUI;

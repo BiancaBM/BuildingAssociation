@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Services.Contracts
 {
-    public interface IProviderService : IBaseService<Provider>
+    public interface IProviderBillService : IBaseService<ProviderBill>
     {
     }
 }

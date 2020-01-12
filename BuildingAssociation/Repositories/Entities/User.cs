@@ -4,11 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Repositories.Entities
 {
-    public class User
+    public class User : BaseEntity
     {
-        [Key]
-        public long? UserId { get; set; }
-
         [Required]
         public string Name { get; set; }
 
@@ -24,9 +21,8 @@ namespace Repositories.Entities
         public int MembersCount { get; set; }
 
         public DateTime? DateCreated { get; set; }
-        public Guid Guid { get; set; }
 
-        public ICollection<Consumption> Consumptions { get; set; }
+        public ICollection<WaterConsumption> WaterConsumptions { get; set; }
         public ICollection<Apartment> Apartments { get; set; }
     }
 }

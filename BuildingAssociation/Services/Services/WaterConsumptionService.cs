@@ -5,11 +5,11 @@ using Services.Contracts;
 
 namespace Services.Services
 {
-    public class ConsumptionService : IConsumptionService
+    public class WaterConsumptionService : IWaterConsumptionService
     {
-        private IConsumptionRepository _consumptionRepository;
+        private IWaterConsumptionRepository _consumptionRepository;
 
-        public ConsumptionService(IConsumptionRepository consumptionRepository)
+        public WaterConsumptionService(IWaterConsumptionRepository consumptionRepository)
         {
             _consumptionRepository = consumptionRepository;
         }
@@ -19,27 +19,27 @@ namespace Services.Services
             _consumptionRepository.Delete(id);
         }
 
-        public Consumption Get(long id)
+        public WaterConsumption Get(long id)
         {
             return _consumptionRepository.Get(id);
         }
 
-        public IEnumerable<Consumption> Get(IEnumerable<long> ids)
+        public IEnumerable<WaterConsumption> Get(IEnumerable<long> ids)
         {
             return _consumptionRepository.Get(ids);
         }
 
-        public IEnumerable<Consumption> GetAll()
+        public IEnumerable<WaterConsumption> GetAll()
         {
             return _consumptionRepository.GetAll();
         }
 
-        public Consumption Insert(Consumption consumption)
+        public WaterConsumption Insert(WaterConsumption consumption)
         {
             return _consumptionRepository.Insert(consumption);
         }
 
-        public void Update(Consumption consumption)
+        public void Update(WaterConsumption consumption)
         {
             _consumptionRepository.Update(consumption);
         }

@@ -49,33 +49,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Contracts\IBaseRepository.cs" />
     <Compile Include="Contracts\IApartamentRepository.cs" />
-    <Compile Include="Contracts\IBillRepository.cs" />
-    <Compile Include="Contracts\IConsumptionRepository.cs" />
+    <Compile Include="Contracts\IProviderBillRepository.cs" />
+    <Compile Include="Contracts\IWaterConsumptionRepository.cs" />
     <Compile Include="Contracts\IProviderRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Entities\Apartament.cs" />
-    <Compile Include="Entities\Bill.cs" />
-    <Compile Include="Entities\Consumption.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Enums\CalculationType.cs" />
+    <Compile Include="Entities\ProviderBill.cs" />
+    <Compile Include="Entities\ConsumptionType.cs" />
+    <Compile Include="Entities\WaterConsumption.cs" />
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Migrations\201910172134575_InitialState.cs" />
-    <Compile Include="Migrations\201910172134575_InitialState.Designer.cs">
-      <DependentUpon>201910172134575_InitialState.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910181333340_add_guidColum.cs" />
-    <Compile Include="Migrations\201910181333340_add_guidColum.Designer.cs">
-      <DependentUpon>201910181333340_add_guidColum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910291324033_changeIntIdInLong.cs" />
-    <Compile Include="Migrations\201910291324033_changeIntIdInLong.Designer.cs">
-      <DependentUpon>201910291324033_changeIntIdInLong.cs</DependentUpon>
+    <Compile Include="Entities\UserBillItem.cs" />
+    <Compile Include="Migrations\202001121225468_InitialState.cs" />
+    <Compile Include="Migrations\202001121225468_InitialState.Designer.cs">
+      <DependentUpon>202001121225468_InitialState.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApartmentRepository.cs" />
-    <Compile Include="Repositories\BillRepository.cs" />
-    <Compile Include="Repositories\ConsumptionRepository.cs" />
+    <Compile Include="Repositories\ProviderBillRepository.cs" />
+    <Compile Include="Repositories\WaterConsumptionRepository.cs" />
     <Compile Include="Repositories\ProviderRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
@@ -84,16 +81,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910172134575_InitialState.resx">
-      <DependentUpon>201910172134575_InitialState.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910181333340_add_guidColum.resx">
-      <DependentUpon>201910181333340_add_guidColum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910291324033_changeIntIdInLong.resx">
-      <DependentUpon>201910291324033_changeIntIdInLong.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001121225468_InitialState.resx">
+      <DependentUpon>202001121225468_InitialState.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

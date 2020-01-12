@@ -3,11 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Repositories.Entities
 {
-    public class Provider
+    public class Provider : BaseEntity
     {
-        [Key]
-        public long? ProviderId { get; set; }
-
         public double UnitPrice { get; set; }
 
         public string Name { get; set; }
@@ -15,7 +12,5 @@ namespace Repositories.Entities
         public string CUI { get; set; }
 
         public string BankAccount { get; set; }
-
-        public Guid Guid { get; set; }
     }
 }
