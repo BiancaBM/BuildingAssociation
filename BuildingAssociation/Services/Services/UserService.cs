@@ -43,5 +43,11 @@ namespace Services.Services
         {
             _userRepository.Update(user);
         }
+
+        public User GetByCredentials(string email, string password)
+        {
+            //encode/decode
+            return _userRepository.GetByCredentials(email, password);
+        }
     }
 }

@@ -1,0 +1,32 @@
+.navigation-container {
+    background-color: rgb(228, 247, 252);
+    padding: 0 15px;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul.navigation-content {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+.navigation-content li {
+    display: flex;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: white;
+    margin-right: 5px;
+    text-transform: uppercase;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.navigation-container li:hover {
+    background-color: rgb(112, 200, 216);
+}

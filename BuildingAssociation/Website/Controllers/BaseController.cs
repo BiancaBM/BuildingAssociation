@@ -4,10 +4,12 @@ using System;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Website.Helpers;
 
 namespace Website.Controllers
 {
     [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+    [BasicAuthentication]
     public class BaseController<T> : ApiController where T : BaseEntity
     {
         private IBaseService<T> _service;

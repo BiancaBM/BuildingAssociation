@@ -59,5 +59,10 @@ namespace Repositories.Repositories
             return Users.ToList();
         }
 
+        public User GetByCredentials(string email, string password)
+        {
+            return Users.FirstOrDefault(x => x.Email == email && x.Password == password);
+        }
+
     }
 }
