@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as config from '../../config';
 import './style.css';
 import { User } from '../../models/user';
 import { RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 interface MainState {
@@ -24,30 +24,19 @@ export default class Main extends React.Component<RouteComponentProps<any>, Main
 
     initData = () => {
         if(sessionStorage.getItem('authToken') != null) {
-            fetch(`${config.apiUrl}/Users`, {
+            fetch(`/Users`, {
                 headers: {
                     'Authorization': sessionStorage.getItem('authToken')
-                }
-            }).then(response => {
+                } 
+            } as RequestInit).then(response => {
                 if(response.ok) {
                 return response.json();
                 }
 
                 return undefined;
-            }).then(result => this.setState({users: result }, () => {debugger;}));
+            }).then(result => this.setState({users: result }));
         }
     }
-
-    /*shouldComponentUpdate(nextProps: RouteComponentProps<any>) {
-        const nextLocationState = nextProps.location.state as any;
-        const locationState = this.props.location.state as any;
-        return locationState 
-            && locationState.from
-            && nextLocationState
-            && nextLocationState.from
-            && nextLocationState.from !== locationState.from;
-    }*/
-
 
     renderUsers = () => {
         if(!this.state.users) return undefined;
@@ -67,7 +56,11 @@ export default class Main extends React.Component<RouteComponentProps<any>, Main
         }
 
         return (
-            <>{this.renderUsers()}</>
+            <>
+            {this.renderUsers()}
+            <Link to={'/addbill'}>Add bill</Link>
+            <Link to={'/billlist'}>View bills</Link>
+            </>
         )
     }
 }

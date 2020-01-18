@@ -44,7 +44,7 @@ namespace Repositories.Migrations
                 Email = "admin@buildingassociation.com",
                 MembersCount = 0,
                 Name = "Bianca Morar",
-                Password = "abcd1234",
+                Password = "YWJjZDEyMzQ=",
                 UniqueId = userId1,
             };
 
@@ -55,7 +55,7 @@ namespace Repositories.Migrations
                 Email = "user2@buildingassociation.com",
                 MembersCount = 2,
                 Name = "User Doi",
-                Password = "abcd1234",
+                Password = "YWJjZDEyMzQ=",
                 UniqueId = userId2,
                 Apartments = new[] { apartment1 }, // aici poti observa ca am facut eu legatura, si entity framework va sti in ce tabel sa puna ;)
             };
@@ -82,27 +82,6 @@ namespace Repositories.Migrations
             };
 
             context.Providers.AddOrUpdate(new[] { provider1, provider2 });
-
-            ProviderBill bill1 = new ProviderBill
-            {
-                UniqueId = billId1,
-                ProviderId = providerId1,
-                CreationDate = DateTime.UtcNow,
-                Paid = false,
-                DueDate = DateTime.UtcNow.AddDays(60),
-            };
-
-            ProviderBill bill2 = new ProviderBill
-            {
-                UniqueId = billId2,
-                ProviderId = providerId2,
-                Provider = provider2,
-                CreationDate = DateTime.UtcNow,
-                Paid = false,
-                DueDate = DateTime.UtcNow.AddDays(90)
-            };
-
-            context.Bills.AddOrUpdate(new[] { bill1, bill2 });
         }
     }
 }

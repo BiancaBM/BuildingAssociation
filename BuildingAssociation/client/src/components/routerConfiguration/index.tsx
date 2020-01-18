@@ -4,6 +4,9 @@ import Navigation from '../navigation';
 import About from '../about';
 import Login from '../login';
 import Main from '../main';
+import AddBill from '../addBill';
+import './style.css';
+import BillList from '../billList';
 
 class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
     private previousRouteHash: string;
@@ -26,19 +29,37 @@ class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
 
     render() {
         return (
-            <div>
+            <div className="root-container">
               <Switch>
                 <Route path="/about">
                   <Navigation {...this.props} />
-                  <About />
+                  <div className="main-container">
+                    <About />
+                  </div>
                 </Route>
                 <Route path="/login">
                   <Navigation {...this.props}/>
-                  <Login />
+                  <div className="main-container">
+                    <Login />
+                  </div>
+                </Route>
+                <Route path="/addbill">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <AddBill {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/billlist">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <BillList {...this.props} />
+                  </div>
                 </Route>
                 <Route path="/">
                   <Navigation {...this.props}/>
-                  <Main {...this.props} />
+                  <div className="main-container">
+                    <Main {...this.props} />
+                  </div>
                 </Route>
               </Switch>
             </div>

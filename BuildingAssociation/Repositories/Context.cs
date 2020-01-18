@@ -16,14 +16,13 @@ namespace Repositories
         
         public BuildingAssociationContext() : base("BuildingAssociation")
         {
-
+            this.Configuration.ProxyCreationEnabled = true;
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.AutoDetectChangesEnabled = true;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //aici un exemplu de proprietate denumita Guid ce in baza de date se va numi ReferenceCode,
-            //poti pastra asta, ca sa ai la indemana exemplul cu FluentApi
-            // citeste aici sa vezi cum mai poti crea tabele, fain, folosind FluentApi
             //https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/relationships
         //    modelBuilder.Entity<User>()
         //        .Property(u => u.Guid)

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import './style.css';
-import * as config from '../../config';
 import { Redirect } from 'react-router';
 
 interface LoginState {
     userLogged: boolean;
     showError: boolean;
-    userFullName: string,
-    username: string
+    userFullName?: string,
+    username?: string
 }
 export default class Login extends React.Component<{}, LoginState> {
     constructor(props: Readonly<{}>) {
@@ -27,7 +26,7 @@ export default class Login extends React.Component<{}, LoginState> {
         const password = (document.getElementById('passwordfield') as HTMLInputElement).value;
         const encodedPassword = btoa(password);
         debugger;
-        fetch(`${config.apiUrl}/authentication/validate?email=${email}&password=${encodedPassword}`)
+        fetch(`/authentication/validate?email=${email}&password=${encodedPassword}`)
         .then(response => {
             if(response.ok) return response.json()
             else return undefined;

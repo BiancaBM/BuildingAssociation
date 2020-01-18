@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import * as config from './config';
+
 import { configWithRouter as ConfigWithRouter } from './components/routerConfiguration';
 class App extends React.Component {
 

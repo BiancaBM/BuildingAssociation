@@ -8,10 +8,14 @@ namespace Repositories.Entities
     {
         [ForeignKey("Provider")]
         public long? ProviderId { get; set; }
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
         [Required]
-        public int Units { get; set; }
+        public double Units { get; set; }
+
+        public double? ProviderUnitPrice { get; set; }
+
+        public double Other { get; set; }
 
         public bool Paid { get; set; }
 

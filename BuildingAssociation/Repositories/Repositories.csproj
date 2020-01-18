@@ -74,9 +74,17 @@
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserBillItem.cs" />
-    <Compile Include="Migrations\202001121342310_InitialState.cs" />
-    <Compile Include="Migrations\202001121342310_InitialState.Designer.cs">
-      <DependentUpon>202001121342310_InitialState.cs</DependentUpon>
+    <Compile Include="Migrations\202001181614002_Initial.cs" />
+    <Compile Include="Migrations\202001181614002_Initial.Designer.cs">
+      <DependentUpon>202001181614002_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001181748086_ChangeColumns.cs" />
+    <Compile Include="Migrations\202001181748086_ChangeColumns.Designer.cs">
+      <DependentUpon>202001181748086_ChangeColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001181758572_ChangeColumns1.cs" />
+    <Compile Include="Migrations\202001181758572_ChangeColumns1.Designer.cs">
+      <DependentUpon>202001181758572_ChangeColumns1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,8 +99,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001121342310_InitialState.resx">
-      <DependentUpon>202001121342310_InitialState.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001181614002_Initial.resx">
+      <DependentUpon>202001181614002_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181748086_ChangeColumns.resx">
+      <DependentUpon>202001181748086_ChangeColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181758572_ChangeColumns1.resx">
+      <DependentUpon>202001181758572_ChangeColumns1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

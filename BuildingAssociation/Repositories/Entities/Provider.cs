@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Repositories.Entities
 {
-    public class Provider : BaseEntity
+    public class Provider: BaseEntity
     {
         public double UnitPrice { get; set; }
 

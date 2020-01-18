@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Repositories.Contracts;
 using Repositories.Entities;
 using Services.Contracts;
@@ -36,6 +37,7 @@ namespace Services.Services
 
         public ProviderBill Insert(ProviderBill bill)
         {
+            bill.CreationDate = DateTime.UtcNow;
             return _billRepository.Insert(bill);
         }
 

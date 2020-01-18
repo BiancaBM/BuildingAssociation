@@ -6,7 +6,7 @@ using System.Web.Http.Cors;
 
 namespace Website.Controllers
 {
-    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     public class AuthenticationController : ApiController
     {
         private IUserService _userService;
