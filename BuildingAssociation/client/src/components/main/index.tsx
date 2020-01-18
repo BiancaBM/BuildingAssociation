@@ -58,7 +58,6 @@ export default class Main extends React.Component<RouteComponentProps<any>, Main
         return (
             <>
             {this.renderUsers()}
-            <Link to={'/addbill'}>Add bill</Link>
             <Link to={'/billlist'}>View bills</Link>
             </>
         )

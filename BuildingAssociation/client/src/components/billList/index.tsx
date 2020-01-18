@@ -4,12 +4,11 @@ import { RouteComponentProps } from 'react-router';
 import { ProviderBillViewModel } from '../../models/providerBill';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 interface BillListState {
     bills: ProviderBillViewModel[];
 }
-
-
 
 export default class BillList extends React.Component<RouteComponentProps<any>, BillListState> {
     constructor(props: RouteComponentProps<any>) {
@@ -60,6 +59,8 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
 
         return (
             <div className="container billlist-container">
+                <Link to={'/addbill'} className="btn btn-default">Add bill</Link>
+
                 <BootstrapTable data={this.state.bills}
                     striped hover
                     version='4'

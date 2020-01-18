@@ -9,7 +9,7 @@ namespace Repositories.Entities
         [Required]
         public string Name { get; set; }
 
-        public bool IsAdmin { get; set; }
+        public string Roles { get; set; }
 
         [Required]
         public string Email { get; set; }

@@ -22,7 +22,6 @@ namespace Repositories.Migrations
 
             int apartmentId1 = 1;
             int userId1 = 1, userId2 = 2;
-            int billId1 = 1, billId2 = 2;
             int providerId1 = 1, providerId2 = 2;
 
             Apartment apartment1 = new Apartment
@@ -39,7 +38,7 @@ namespace Repositories.Migrations
 
             User user1 = new User
             {
-                IsAdmin = true,
+                Roles = "Admin",
                 DateCreated = DateTime.UtcNow,
                 Email = "admin@buildingassociation.com",
                 MembersCount = 0,
@@ -50,7 +49,7 @@ namespace Repositories.Migrations
 
             User user2 = new User
             {
-                IsAdmin = false,
+                Roles= "User",
                 DateCreated = DateTime.UtcNow,
                 Email = "user2@buildingassociation.com",
                 MembersCount = 2,

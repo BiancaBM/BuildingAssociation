@@ -1,9 +1,11 @@
-﻿using Services.Contracts;
+﻿using Repositories.Entities;
+using Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -47,11 +49,15 @@ namespace Website.Helpers
                 //Second element of the array is the password
                 string password = usernamePasswordArray[1];
 
+                User userByCredentials = UserValidate.GetUserDetails(username, password);
                 //call the login method to check the username and password
-                if (UserValidate.IsLogged(username, password))
+                if (userByCredentials != null)
                 {
                     var identity = new GenericIdentity(username);
-                    IPrincipal principal = new GenericPrincipal(identity, null);
+                    /*identity.AddClaim(new Claim("Email", userByCredentials.Email));
+                    identity.AddClaim(new Claim("ID", Convert.ToString(userByCredentials.UniqueId)));*/
+
+                    IPrincipal principal = new GenericPrincipal(identity, userByCredentials.Roles.Split(','));
                     Thread.CurrentPrincipal = principal;
                     if (HttpContext.Current != null)
                     {

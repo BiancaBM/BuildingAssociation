@@ -1,4 +1,5 @@
-﻿using Repositories.Repositories;
+﻿using Repositories.Entities;
+using Repositories.Repositories;
 using Services.Services;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ namespace Website.Helpers
 {
     public class UserValidate
     {
-        public static bool IsLogged(string email, string password)
+        public static User GetUserDetails(string email, string password)
         {
             var userRepo = new UserRepository(new Repositories.BuildingAssociationContext());
             var userService = new UserService(userRepo);
 
-            return userService.GetByCredentials(email, password) != null;
+            return userService.GetByCredentials(email, password);
         }
     }
 }

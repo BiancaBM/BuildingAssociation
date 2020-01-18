@@ -10,6 +10,7 @@ namespace Website.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [BasicAuthentication]
+    [MyAuthorize(Roles = "Admin")]
     public class UsersController : ApiController
     {
         private IUserService _userService;
