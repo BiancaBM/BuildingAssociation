@@ -20,21 +20,8 @@ namespace Repositories.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            int apartmentId1 = 1;
-            int userId1 = 1, userId2 = 2;
+            int userId1 = 1;
             int providerId1 = 1, providerId2 = 2;
-
-            Apartment apartment1 = new Apartment
-            {
-                UniqueId = apartmentId1,
-                Surface = 50,
-                Number = 25,
-                Floor = 7,
-                UserId = userId2
-
-            };
-
-            context.Apartments.AddOrUpdate(new[] { apartment1 });
 
             User user1 = new User
             {
@@ -45,21 +32,10 @@ namespace Repositories.Migrations
                 Name = "Bianca Morar",
                 Password = "YWJjZDEyMzQ=",
                 UniqueId = userId1,
+                MansionId = 1,
             };
 
-            User user2 = new User
-            {
-                Roles= "User",
-                DateCreated = DateTime.UtcNow,
-                Email = "user2@buildingassociation.com",
-                MembersCount = 2,
-                Name = "User Doi",
-                Password = "YWJjZDEyMzQ=",
-                UniqueId = userId2,
-                Apartments = new[] { apartment1 }, // aici poti observa ca am facut eu legatura, si entity framework va sti in ce tabel sa puna ;)
-            };
-
-            context.Users.AddOrUpdate(new[] { user1, user2 });
+            context.Users.AddOrUpdate(new[] { user1 });
 
 
             Provider provider1 = new Provider

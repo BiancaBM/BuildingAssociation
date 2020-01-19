@@ -50,6 +50,7 @@ namespace Repositories.Repositories
             updatedUser.MembersCount = user.MembersCount;
             updatedUser.Name = user.Name;
             updatedUser.Password = user.Password;
+            updatedUser.MansionId = user.MansionId;
 
             _ctx.SaveChanges();
         }

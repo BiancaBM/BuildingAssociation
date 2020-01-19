@@ -44,6 +44,7 @@
     <Compile Include="Contracts\IApartmentService.cs" />
     <Compile Include="Contracts\IBaseService.cs" />
     <Compile Include="Contracts\IProviderBillService.cs" />
+    <Compile Include="Contracts\IMansionService.cs" />
     <Compile Include="Contracts\IWaterConsumptionService.cs" />
     <Compile Include="Contracts\IProviderService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApartmentService.cs" />
     <Compile Include="Services\ProviderBillService.cs" />
+    <Compile Include="Services\MansionService.cs" />
     <Compile Include="Services\WaterConsumptionService.cs" />
     <Compile Include="Services\ProviderService.cs" />
     <Compile Include="Services\UserService.cs" />

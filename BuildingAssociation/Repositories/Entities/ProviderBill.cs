@@ -10,6 +10,10 @@ namespace Repositories.Entities
         public long? ProviderId { get; set; }
         public virtual Provider Provider { get; set; }
 
+        [ForeignKey("Mansion")]
+        public long? MansionId { get; set; }
+        public virtual Mansion Mansion { get; set; }
+
         [Required]
         public double Units { get; set; }
 

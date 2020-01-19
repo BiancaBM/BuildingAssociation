@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Repositories.Contracts;
 using Repositories.Entities;
 using Services.Contracts;
@@ -36,6 +37,7 @@ namespace Services.Services
 
         public User Insert(User user)
         {
+            user.DateCreated = DateTime.UtcNow;
             return _userRepository.Insert(user);
         }
 

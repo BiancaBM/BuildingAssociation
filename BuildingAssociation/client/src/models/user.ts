@@ -9,9 +9,12 @@ export interface User
 {
 	userId?: number;
 	name: string;
-	isAdmin: boolean;
+	isAdmin?: boolean;
 	email: string;
+	password: string;
 	membersCount: number;
+	mansionId?: number;
+	mansionName: string;
 	waterConsumptions: WaterConsumption.WaterConsumption[];
 	apartments: Apartment.Apartment[];
 }

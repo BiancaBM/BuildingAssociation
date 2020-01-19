@@ -16,7 +16,9 @@ namespace Website.Extensions
                 MembersCount = item.MembersCount,
                 Apartments = item.Apartments.Select(x => x.ToViewModel()).ToList(),
                 WaterConsumptions = item.WaterConsumptions.Select(x => x.ToViewModel()).ToList(),
-                IsAdmin = item.Roles.IndexOf("Admin") > 0
+                IsAdmin = item.Roles.IndexOf("Admin") > 0,
+                MansionId = item.MansionId,
+                MansionName = item.Mansion != null ? item.Mansion.Address : string.Empty,
             };
         }
 
@@ -28,6 +30,8 @@ namespace Website.Extensions
                 Email = viewModel.Email,
                 Name = viewModel.Name,
                 MembersCount = viewModel.MembersCount,
+                MansionId = viewModel.MansionId,
+                Password = viewModel.Password
             };
         }
     }

@@ -39,7 +39,7 @@ export default class Login extends React.Component<{}, LoginState> {
                     this.setState({userLogged: true, showError: false, username: user.email, userFullName: user.name});
                 } else {
                     this.setState({userLogged: false, showError: true, userFullName: undefined, username: undefined});
-                    sessionStorage.removeItem('authTocken');
+                    sessionStorage.clear();
                 }
             }
         )
@@ -49,7 +49,7 @@ export default class Login extends React.Component<{}, LoginState> {
         if(this.state.userLogged) {
             return <Redirect to={{
                 pathname: '/',
-                state: { userFullName: this.state.userFullName, username: this.state.username, from: 'login' },
+                state: { userFullName: this.state.userFullName, username: this.state.username },
             }} />
         }
 

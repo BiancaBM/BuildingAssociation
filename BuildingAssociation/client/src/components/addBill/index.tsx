@@ -13,7 +13,6 @@ interface AddBillState {
     units: number;
     other: number;
     dueDate: string;
-    loading: boolean;
     saved: boolean;
 }
 
@@ -27,7 +26,6 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
             units: 0,
             other: 0,
             dueDate: moment.utc().startOf('day').toISOString(),
-            loading: true,
             saved: false
         }
     }
@@ -51,6 +49,11 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
             }).then(result => this.setState({providers: result }));
         }
     }
+ 
+    calculatePrice = () => {
+        const unitPrice = this.state.selectedProvider?.unitPrice as number;
+        return unitPrice * this.state.units + this.state.other;
+    }
 
     renderProviders = () => {
         return this.state.providers && this.state.providers.map((provider: Provider) => {
@@ -58,10 +61,6 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         })
     }
 
-    calculatePrice = () => {
-        const unitPrice = this.state.selectedProvider?.unitPrice as number;
-        return unitPrice * this.state.units + this.state.other;
-    }
 
     selectProvider = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOptionId = parseInt(e.target.selectedOptions[0].value);
@@ -114,8 +113,9 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         }
         return (
             <form className="container addbill-container" onSubmit={this.submit}>
+                <label>Provider</label>
                 <select required className="form-control" onChange={this.selectProvider}>
-                    <option>---</option>
+                    <option value="">---</option>
                     {this.renderProviders()}
                 </select>
                 <div className="form-group">

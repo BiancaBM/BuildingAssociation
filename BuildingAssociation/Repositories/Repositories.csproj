@@ -62,9 +62,11 @@
     <Compile Include="Contracts\IBaseRepository.cs" />
     <Compile Include="Contracts\IApartamentRepository.cs" />
     <Compile Include="Contracts\IProviderBillRepository.cs" />
+    <Compile Include="Contracts\IMansionRepository.cs" />
     <Compile Include="Contracts\IWaterConsumptionRepository.cs" />
     <Compile Include="Contracts\IProviderRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
+    <Compile Include="Entities\Mansion.cs" />
     <Compile Include="Entities\Apartament.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Enums\CalculationType.cs" />
@@ -90,10 +92,19 @@
     <Compile Include="Migrations\202001181952044_ChangeColumns2.Designer.cs">
       <DependentUpon>202001181952044_ChangeColumns2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001191055053_AddMasions.cs" />
+    <Compile Include="Migrations\202001191055053_AddMasions.Designer.cs">
+      <DependentUpon>202001191055053_AddMasions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001191132283_AddMasions1.cs" />
+    <Compile Include="Migrations\202001191132283_AddMasions1.Designer.cs">
+      <DependentUpon>202001191132283_AddMasions1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApartmentRepository.cs" />
     <Compile Include="Repositories\ProviderBillRepository.cs" />
+    <Compile Include="Repositories\MansionRepository.cs" />
     <Compile Include="Repositories\WaterConsumptionRepository.cs" />
     <Compile Include="Repositories\ProviderRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -114,6 +125,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001181952044_ChangeColumns2.resx">
       <DependentUpon>202001181952044_ChangeColumns2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001191055053_AddMasions.resx">
+      <DependentUpon>202001191055053_AddMasions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001191132283_AddMasions1.resx">
+      <DependentUpon>202001191132283_AddMasions1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

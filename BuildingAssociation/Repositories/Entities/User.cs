@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repositories.Entities
 {
@@ -21,6 +22,10 @@ namespace Repositories.Entities
         public int MembersCount { get; set; }
 
         public DateTime? DateCreated { get; set; }
+
+        [ForeignKey("Mansion")]
+        public long? MansionId { get; set; }
+        public virtual Mansion Mansion { get; set; }
 
         public virtual ICollection<WaterConsumption> WaterConsumptions { get; set; }
         public virtual ICollection<Apartment> Apartments { get; set; }

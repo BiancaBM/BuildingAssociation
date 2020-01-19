@@ -13,6 +13,7 @@ namespace Repositories
         public DbSet<WaterConsumption> WaterConsumptions { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<ConsumptionType> ConsumptionTypes { get; set; }
+        public DbSet<Mansion> Mansions { get; set; }
         
         public BuildingAssociationContext() : base("BuildingAssociation")
         {

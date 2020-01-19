@@ -7,6 +7,12 @@ import Main from '../main';
 import AddBill from '../addBill';
 import './style.css';
 import BillList from '../billList';
+import MansionList from '../mansionList';
+import AddMansion from '../addMansion';
+import AddProvider from '../addProvider';
+import ProviderList from '../providerList';
+import AddUser from '../addUser';
+import UserList from '../userList';
 
 class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
     private previousRouteHash: string;
@@ -53,6 +59,42 @@ class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
                   <Navigation {...this.props}/>
                   <div className="main-container">
                     <BillList {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/addmansion">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <AddMansion {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/mansions">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <MansionList {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/addprovider">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <AddProvider {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/providers">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <ProviderList {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/adduser">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <AddUser {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/users">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <UserList {...this.props} />
                   </div>
                 </Route>
                 <Route path="/">

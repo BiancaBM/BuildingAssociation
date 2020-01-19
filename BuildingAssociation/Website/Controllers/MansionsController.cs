@@ -1,55 +1,54 @@
 ﻿using Services.Contracts;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using Website.Helpers;
 using Website.Extensions;
-using System.Linq;
+using Website.Helpers;
 using Website.ViewModels;
 
 namespace Website.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [BasicAuthentication]
-    public class UsersController : ApiController
+    [MyAuthorize(Roles = "Admin")]
+    public class MansionsController : ApiController
     {
-        private IUserService _userService;
+        private IMansionService _mansionService;
 
-        public UsersController(IUserService userService)
+        public MansionsController(IMansionService service)
         {
-            _userService = userService;
+            _mansionService = service;
         }
 
-        // GET api/users
-        [MyAuthorize(Roles = "Admin")]
+        // GET api/mansions
         public HttpResponseMessage Get()
         {
-            var items = _userService.GetAll().Select(x => x.ToViewModel());
+            var items = _mansionService.GetAll().Select(x => x.ToViewModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 
-        // GET api/users/5
+        // GET api/mansions/5
         public HttpResponseMessage Get(long id)
         {
-            var item = _userService.Get(id).ToViewModel();
+            var item = _mansionService.Get(id).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 
-        public HttpResponseMessage Post([FromBody]UserViewModel item)
+        public HttpResponseMessage Post([FromBody]MansionViewModel item)
         {
             try
             {
-                var userEntity = item.FromViewModel();
-                userEntity.Roles = "User";
+                var entity = item.FromViewModel();
 
-                if (userEntity.UniqueId.HasValue)
+                if (entity.UniqueId.HasValue)
                 {
-                    _userService.Update(userEntity);
+                    _mansionService.Update(entity);
                 }
                 else
                 {
-                    _userService.Insert(userEntity);
+                    _mansionService.Insert(entity);
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
@@ -60,12 +59,12 @@ namespace Website.Controllers
             }
         }
 
-        // DELETE api/users/5
+        // DELETE api/mansions/5
         public HttpResponseMessage Delete(long id)
         {
             try
             {
-                _userService.Delete(id);
+                _mansionService.Delete(id);
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Bravo patratel");
             }
             catch

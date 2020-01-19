@@ -40,6 +40,10 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
         }
     }
     
+    enumFormatter = (cell: any, row: any, enumObject: any) => {
+        return enumObject[cell];
+    }
+
     render() {
         if(sessionStorage.getItem('authToken') == null) {
             return <div>
@@ -52,15 +56,11 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
             'false': 'No'
         };
           
-        function enumFormatter(cell: any, row: any, enumObject: any) {
-        return enumObject[cell];
-        }
-
         return (
             <div className="container billlist-container">
-                <Link to={'/addbill'} className="btn btn-default">Add bill</Link>
+                <Link to={'/addbill'} className="btn btn-info">Add bill</Link>
 
-                <BootstrapTable data={this.state.bills}
+                <BootstrapTable data={this.state.bills} containerClass="mt-3"
                     striped hover
                     version='4'
                     options={{
@@ -86,7 +86,7 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
                     <TableHeaderColumn dataField='other' dataSort={true}>Other</TableHeaderColumn>
                     <TableHeaderColumn
                         dataField='paid'
-                        dataSort={true} filterFormatted dataFormat={ enumFormatter }
+                        dataSort={true} filterFormatted dataFormat={ this.enumFormatter }
                         formatExtraData={ qualityType }
                         filter={ { type: 'SelectFilter', options: qualityType, condition: 'eq' } }
                     >Paid</TableHeaderColumn>
