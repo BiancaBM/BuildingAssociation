@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './style.css';
-import { User } from '../../models/user';
+import { User } from '../../models/User';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 

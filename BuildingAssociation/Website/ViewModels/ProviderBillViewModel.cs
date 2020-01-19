@@ -1,6 +1,9 @@
-﻿namespace Website.ViewModels
+﻿using Reinforced.Typings.Attributes;
+
+namespace Website.ViewModels
 {
-    public class ProviderBillViewModel
+    [TsInterface(AutoI = false, IncludeNamespace = false, Name = "ProviderBill")]
+    public class ProviderBillViewModel : BaseViewModel
     {
         public long? BillId { get; set; }
         public string ProviderName { get; set; }

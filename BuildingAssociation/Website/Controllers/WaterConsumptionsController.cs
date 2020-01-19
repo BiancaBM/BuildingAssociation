@@ -1,10 +1,12 @@
-﻿using Repositories.Entities;
-using Services.Contracts;
+﻿using Services.Contracts;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Website.Extensions;
 using Website.Helpers;
+using Website.ViewModels;
 
 namespace Website.Controllers
 {
@@ -22,28 +24,30 @@ namespace Website.Controllers
         // GET api/waterconsumptions
         public HttpResponseMessage Get()
         {
-            var items = _waterConsumptionService.GetAll();
+            var items = _waterConsumptionService.GetAll().Select(x => x.ToViewModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 
         // GET api/waterconsumptions/5
         public HttpResponseMessage Get(long id)
         {
-            var item = _waterConsumptionService.Get(id);
+            var item = _waterConsumptionService.Get(id).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 
-        public HttpResponseMessage Post([FromBody]WaterConsumption item)
+        public HttpResponseMessage Post([FromBody]WaterConsumptionViewModel item)
         {
             try
             {
-                if (item.UniqueId.HasValue)
+                var entity = item.FromViewModel();
+
+                if (entity.UniqueId.HasValue)
                 {
-                    _waterConsumptionService.Update(item);
+                    _waterConsumptionService.Update(entity);
                 }
                 else
                 {
-                    _waterConsumptionService.Insert(item);
+                    _waterConsumptionService.Insert(entity);
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);

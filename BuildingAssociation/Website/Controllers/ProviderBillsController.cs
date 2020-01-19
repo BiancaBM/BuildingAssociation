@@ -1,13 +1,12 @@
-﻿using Repositories.Entities;
-using Services.Contracts;
+﻿using Services.Contracts;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Website.ViewModels;
 using Website.Extensions;
 using Website.Helpers;
-using Website.ViewModels;
 
 namespace Website.Controllers
 {
@@ -32,7 +31,7 @@ namespace Website.Controllers
         // GET api/providerbills/5
         public HttpResponseMessage Get(long id)
         {
-            var item = _providerBillService.Get(id);
+            var item = _providerBillService.Get(id).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 

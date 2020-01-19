@@ -1,16 +1,17 @@
-﻿using Repositories.Entities;
-using Services.Contracts;
+﻿using Services.Contracts;
 using System;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Website.Helpers;
+using Website.Extensions;
+using System.Linq;
+using Website.ViewModels;
 
 namespace Website.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [BasicAuthentication]
-    [MyAuthorize(Roles = "Admin")]
     public class UsersController : ApiController
     {
         private IUserService _userService;
@@ -21,30 +22,33 @@ namespace Website.Controllers
         }
 
         // GET api/users
+        [MyAuthorize(Roles = "Admin")]
         public HttpResponseMessage Get()
         {
-            var items = _userService.GetAll();
+            var items = _userService.GetAll().Select(x => x.ToViewModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 
         // GET api/users/5
         public HttpResponseMessage Get(long id)
         {
-            var item = _userService.Get(id);
+            var item = _userService.Get(id).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 
-        public HttpResponseMessage Post([FromBody]User item)
+        public HttpResponseMessage Post([FromBody]UserViewModel item)
         {
             try
             {
-                if (item.UniqueId.HasValue)
+                var userEntity = item.FromViewModel();
+
+                if (userEntity.UniqueId.HasValue)
                 {
-                    _userService.Update(item);
+                    _userService.Update(userEntity);
                 }
                 else
                 {
-                    _userService.Insert(item);
+                    _userService.Insert(userEntity);
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);

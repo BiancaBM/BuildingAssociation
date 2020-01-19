@@ -1,9 +1,11 @@
-﻿using Repositories.Entities;
-using Services.Contracts;
+﻿using Services.Contracts;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Website.ViewModels;
+using Website.Extensions;
 using Website.Helpers;
 
 namespace Website.Controllers
@@ -22,28 +24,30 @@ namespace Website.Controllers
         // GET api/apartments
         public HttpResponseMessage Get()
         {
-            var items = _apartmentService.GetAll();
+            var items = _apartmentService.GetAll().Select(x => x.ToViewModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 
         // GET api/apartments/5
         public HttpResponseMessage Get(long id)
         {
-            var item = _apartmentService.Get(id);
+            var item = _apartmentService.Get(id).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 
-        public HttpResponseMessage Post([FromBody]Apartment item)
+        public HttpResponseMessage Post([FromBody]ApartmentViewModel item)
         {
             try
             {
-                if (item.UniqueId.HasValue)
+                var entity = item.FromViewModel();
+
+                if (entity.UniqueId.HasValue)
                 {
-                    _apartmentService.Update(item);
+                    _apartmentService.Update(entity);
                 }
                 else
                 {
-                    _apartmentService.Insert(item);
+                    _apartmentService.Insert(entity);
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);

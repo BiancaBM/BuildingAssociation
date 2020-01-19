@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './style.css';
 import { RouteComponentProps, Redirect } from 'react-router';
-import { Provider } from '../../models/provider';
-import { ProviderBillViewModel } from '../../models/providerBill';
+import { Provider } from '../../models/Provider';
+import { ProviderBill } from '../../models/ProviderBill';
 
 import moment from 'moment';
 import ReactDatePicker from 'react-datepicker';
@@ -54,7 +54,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
 
     renderProviders = () => {
         return this.state.providers && this.state.providers.map((provider: Provider) => {
-            return <option value={provider.uniqueId}>{provider.name}</option>
+            return <option value={provider.providerId}>{provider.name}</option>
         })
     }
 
@@ -65,7 +65,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
 
     selectProvider = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOptionId = parseInt(e.target.selectedOptions[0].value);
-        const selectedPv = this.state.providers.find(x => x.uniqueId === selectedOptionId);
+        const selectedPv = this.state.providers.find(x => x.providerId === selectedOptionId);
 
         if(selectedPv) {
             this.setState({selectedProvider: selectedPv});
@@ -75,13 +75,14 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
     submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const providerBill: ProviderBillViewModel = {
+        const providerBill: ProviderBill = {
             dueDate: this.state.dueDate,
             other: this.state.other,
             units: this.state.units,
-            providerId: this.state.selectedProvider?.uniqueId,
+            providerId: this.state.selectedProvider?.providerId,
             paid: false,
-            providerUnitPrice: this.state.selectedProvider?.unitPrice
+            providerUnitPrice: this.state.selectedProvider?.unitPrice,
+            providerName: this.state.selectedProvider?.name as string,
         }
 
         fetch('/providerBills', {

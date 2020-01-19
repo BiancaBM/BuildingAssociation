@@ -2,11 +2,9 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 
-export interface Provider
+export interface WaterConsumption
 {
-	providerId?: number;
-	unitPrice: number;
-	name: string;
-	cui: string;
-	bankAccount: string;
+	id?: number;
+	hotWaterUnits: number;
+	coldWaterUnits: number;
 }

@@ -2,11 +2,10 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 
-export interface Provider
+export interface Apartment
 {
-	providerId?: number;
-	unitPrice: number;
-	name: string;
-	cui: string;
-	bankAccount: string;
+	apartmentId?: number;
+	surface: number;
+	number: number;
+	floor: number;
 }

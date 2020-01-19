@@ -1,9 +1,11 @@
-﻿using Repositories.Entities;
-using Services.Contracts;
+﻿using Services.Contracts;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Website.ViewModels;
+using Website.Extensions;
 using Website.Helpers;
 
 namespace Website.Controllers
@@ -22,28 +24,30 @@ namespace Website.Controllers
         // GET api/providers
         public HttpResponseMessage Get()
         {
-            var items = _providerService.GetAll();
+            var items = _providerService.GetAll().Select(x => x.ToViewModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 
         // GET api/providers/5
         public HttpResponseMessage Get(long id)
         {
-            var item = _providerService.Get(id);
+            var item = _providerService.Get(id).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 
-        public HttpResponseMessage Post([FromBody]Provider item)
+        public HttpResponseMessage Post([FromBody]ProviderViewModel item)
         {
             try
             {
-                if (item.UniqueId.HasValue)
+                var entity = item.FromViewModel();
+
+                if (entity.UniqueId.HasValue)
                 {
-                    _providerService.Update(item);
+                    _providerService.Update(entity);
                 }
                 else
                 {
-                    _providerService.Insert(item);
+                    _providerService.Insert(entity);
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);

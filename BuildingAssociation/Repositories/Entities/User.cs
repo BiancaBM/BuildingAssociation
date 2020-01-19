@@ -22,7 +22,7 @@ namespace Repositories.Entities
 
         public DateTime? DateCreated { get; set; }
 
-        public ICollection<WaterConsumption> WaterConsumptions { get; set; }
-        public ICollection<Apartment> Apartments { get; set; }
+        public virtual ICollection<WaterConsumption> WaterConsumptions { get; set; }
+        public virtual ICollection<Apartment> Apartments { get; set; }
     }
 }

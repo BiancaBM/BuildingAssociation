@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './style.css';
 import { Redirect } from 'react-router';
+import { User } from '../../models/User';
 
 interface LoginState {
     userLogged: boolean;
@@ -30,10 +31,11 @@ export default class Login extends React.Component<{}, LoginState> {
         .then(response => {
             if(response.ok) return response.json()
             else return undefined;
-        }).then((user: any) => {
+        }).then((user: User) => {
                 if(user) {
                     const stringToEncode = btoa(`${email}:${encodedPassword}`);
                     sessionStorage.setItem('authToken', `BASIC ${stringToEncode}`);
+                    sessionStorage.setItem('isAdmin', `${user.isAdmin}`);
                     this.setState({userLogged: true, showError: false, username: user.email, userFullName: user.name});
                 } else {
                     this.setState({userLogged: false, showError: true, userFullName: undefined, username: undefined});

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import './style.css';
 import { RouteComponentProps } from 'react-router';
-import { ProviderBillViewModel } from '../../models/providerBill';
+import { ProviderBill } from '../../models/ProviderBill';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 interface BillListState {
-    bills: ProviderBillViewModel[];
+    bills: ProviderBill[];
 }
 
 export default class BillList extends React.Component<RouteComponentProps<any>, BillListState> {
@@ -35,7 +34,7 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
                 }
 
                 return undefined;
-            }).then((result: ProviderBillViewModel[]) => {
+            }).then((result: ProviderBill[]) => {
                 this.setState({ bills: result })
             });
         }

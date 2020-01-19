@@ -3,6 +3,7 @@ using Services.Contracts;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Website.Extensions;
 
 namespace Website.Controllers
 {
@@ -21,7 +22,7 @@ namespace Website.Controllers
         [ActionName("validate")]
         public HttpResponseMessage ValidateToken(string email, string password)
         {
-            var user = _userService.GetByCredentials(email, password);
+            var user = _userService.GetByCredentials(email, password).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, user);
         }
     }
