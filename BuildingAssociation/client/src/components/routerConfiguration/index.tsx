@@ -13,6 +13,10 @@ import AddProvider from '../addProvider';
 import ProviderList from '../providerList';
 import AddUser from '../addUser';
 import UserList from '../userList';
+import AddConsumptionType from '../addConsumptionType';
+import ConsumptionTypeList from '../consumptionTypeList';
+import AddApartment from '../addApartment';
+import ApartmentList from '../apartmentList';
 
 class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
     private previousRouteHash: string;
@@ -95,6 +99,30 @@ class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
                   <Navigation {...this.props}/>
                   <div className="main-container">
                     <UserList {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/addconsumptiontype">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <AddConsumptionType {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/consumptions">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <ConsumptionTypeList {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/addapartment">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <AddApartment {...this.props} />
+                  </div>
+                </Route>
+                <Route path="/apartments">
+                  <Navigation {...this.props}/>
+                  <div className="main-container">
+                    <ApartmentList {...this.props} />
                   </div>
                 </Route>
                 <Route path="/">

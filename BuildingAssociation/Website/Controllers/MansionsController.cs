@@ -65,11 +65,11 @@ namespace Website.Controllers
             try
             {
                 _mansionService.Delete(id);
-                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Bravo patratel");
+                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }
             catch
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Fi atenta!");
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

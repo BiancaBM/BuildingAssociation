@@ -13,4 +13,7 @@ export interface ProviderBill
 	totalPrice?: number;
 	providerUnitPrice?: number;
 	dueDate: string;
+	date: string;
+	mansionId?: number;
+	mansionName: string;
 }

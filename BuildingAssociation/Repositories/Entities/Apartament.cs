@@ -7,7 +7,7 @@ namespace Repositories.Entities
     public class Apartment : BaseEntity
     {
         [Required]
-        public int Surface { get; set; }
+        public double Surface { get; set; }
 
         [Required]
         public int Number { get; set; }
@@ -15,8 +15,15 @@ namespace Repositories.Entities
         [Required]
         public int Floor { get; set; }
 
+        [Required]
+        public double IndividualQuota { get; set; }
+
         [ForeignKey("User")]
         public long? UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
+
+        [ForeignKey("Mansion")]
+        public long? MansionId { get; set; }
+        public virtual Mansion Mansion { get; set; }
     }
 }

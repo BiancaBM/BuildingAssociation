@@ -8,4 +8,9 @@ export interface Apartment
 	surface: number;
 	number: number;
 	floor: number;
+	individualQuota: number;
+	userId?: number;
+	userName: string;
+	mansionId?: number;
+	mansionName: string;
 }

@@ -12,6 +12,7 @@ namespace Website.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [BasicAuthentication]
+    [MyAuthorize(Roles = "Admin")]
     public class ApartmentsController : ApiController
     {
         private IApartmentService _apartmentService;
@@ -64,11 +65,11 @@ namespace Website.Controllers
             try
             {
                 _apartmentService.Delete(id);
-                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Bravo patratel");
+                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }
             catch
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Fi atenta!");
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

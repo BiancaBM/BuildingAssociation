@@ -12,6 +12,7 @@ namespace Website.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [BasicAuthentication]
+    [MyAuthorize(Roles = "Admin")]
     public class UsersController : ApiController
     {
         private IUserService _userService;
@@ -22,7 +23,6 @@ namespace Website.Controllers
         }
 
         // GET api/users
-        [MyAuthorize(Roles = "Admin")]
         public HttpResponseMessage Get()
         {
             var items = _userService.GetAll().Select(x => x.ToViewModel());
@@ -66,11 +66,11 @@ namespace Website.Controllers
             try
             {
                 _userService.Delete(id);
-                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Bravo patratel");
+                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }
             catch
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Fi atenta!");
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

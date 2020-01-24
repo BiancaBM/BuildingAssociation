@@ -37,7 +37,6 @@ namespace Services.Services
 
         public ProviderBill Insert(ProviderBill bill)
         {
-            bill.CreationDate = DateTime.UtcNow;
             return _billRepository.Insert(bill);
         }
 

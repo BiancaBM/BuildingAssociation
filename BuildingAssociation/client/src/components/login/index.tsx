@@ -65,7 +65,7 @@ export default class Login extends React.Component<{}, LoginState> {
                         <label>Password</label>
                         <input type="password" className="form-control" id="passwordfield" placeholder="Password"/>
                     </div>
-                    {this.state.showError && <div>Error!!</div>}
+                    {this.state.showError && <div style={{color: 'red'}}>Invalid!</div>}
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>

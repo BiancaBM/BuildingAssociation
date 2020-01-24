@@ -1,6 +1,6 @@
 ﻿using Repositories.Entities.Enums;
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repositories.Entities
 {
@@ -8,8 +8,12 @@ namespace Repositories.Entities
     {
         public string Name { get; set; }
 
-        public DateTime? CreationDate { get; set; }
-
         public CalculationType CalculationType { get; set; }
+
+        public DateTime? Date { get; set; }
+
+        [ForeignKey("Mansion")]
+        public long? MansionId { get; set; }
+        public virtual Mansion Mansion { get; set; }
     }
 }

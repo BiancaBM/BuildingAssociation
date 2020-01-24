@@ -1,4 +1,5 @@
 ﻿using Repositories.Entities;
+using System;
 using Website.ViewModels;
 
 namespace Website.Extensions
@@ -12,7 +13,12 @@ namespace Website.Extensions
                 ApartmentId = item.UniqueId,
                 Floor = item.Floor,
                 Number = item.Number,
-                Surface = item.Surface
+                Surface = item.Surface,
+                IndividualQuota = item.IndividualQuota,
+                MansionId = item.Mansion.UniqueId,
+                MansionName = item.Mansion.Address,
+                UserId = item.User.UniqueId,
+                UserName = item.User.Name
             };
         }
 
@@ -21,9 +27,12 @@ namespace Website.Extensions
             return new Apartment
             {
                 UniqueId = viewModel.ApartmentId,
-                Surface = viewModel.Surface,
+                Surface = Math.Round(viewModel.Surface, 2),
                 Number = viewModel.Number,
-                Floor = viewModel.Floor
+                Floor = viewModel.Floor,
+                IndividualQuota = viewModel.IndividualQuota,
+                UserId = viewModel.UserId,
+                MansionId = viewModel.MansionId
             };
         }
     }

@@ -14,5 +14,8 @@ namespace Website.ViewModels
         public double? TotalPrice { get; set; }
         public double? ProviderUnitPrice { get; set; }
         public string DueDate { get; set; }
+        public string Date { get; set; }
+        public long? MansionId { get; set; }
+        public string MansionName { get; set; }
     }
 }

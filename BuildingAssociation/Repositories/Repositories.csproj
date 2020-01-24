@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +39,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -63,19 +69,20 @@
     <Compile Include="Contracts\IApartamentRepository.cs" />
     <Compile Include="Contracts\IProviderBillRepository.cs" />
     <Compile Include="Contracts\IMansionRepository.cs" />
+    <Compile Include="Contracts\IConsumptionTypeRepository.cs" />
     <Compile Include="Contracts\IWaterConsumptionRepository.cs" />
     <Compile Include="Contracts\IProviderRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Entities\Mansion.cs" />
     <Compile Include="Entities\Apartament.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Enums\CalculationType.cs" />
     <Compile Include="Entities\ProviderBill.cs" />
     <Compile Include="Entities\ConsumptionType.cs" />
     <Compile Include="Entities\WaterConsumption.cs" />
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserBillItem.cs" />
+    <Compile Include="Enums\CalculationType.cs" />
     <Compile Include="Migrations\202001181614002_Initial.cs" />
     <Compile Include="Migrations\202001181614002_Initial.Designer.cs">
       <DependentUpon>202001181614002_Initial.cs</DependentUpon>
@@ -100,11 +107,32 @@
     <Compile Include="Migrations\202001191132283_AddMasions1.Designer.cs">
       <DependentUpon>202001191132283_AddMasions1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001241516559_ChangeTables.cs" />
+    <Compile Include="Migrations\202001241516559_ChangeTables.Designer.cs">
+      <DependentUpon>202001241516559_ChangeTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001241538443_RemoveCreationDateOnConsumptionType.cs" />
+    <Compile Include="Migrations\202001241538443_RemoveCreationDateOnConsumptionType.Designer.cs">
+      <DependentUpon>202001241538443_RemoveCreationDateOnConsumptionType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001241614438_ConnectMansionToConsumptionType.cs" />
+    <Compile Include="Migrations\202001241614438_ConnectMansionToConsumptionType.Designer.cs">
+      <DependentUpon>202001241614438_ConnectMansionToConsumptionType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001241708341_Updates.cs" />
+    <Compile Include="Migrations\202001241708341_Updates.Designer.cs">
+      <DependentUpon>202001241708341_Updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001241901281_update.cs" />
+    <Compile Include="Migrations\202001241901281_update.Designer.cs">
+      <DependentUpon>202001241901281_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApartmentRepository.cs" />
     <Compile Include="Repositories\ProviderBillRepository.cs" />
     <Compile Include="Repositories\MansionRepository.cs" />
+    <Compile Include="Repositories\ConsumptionTypeRepository.cs" />
     <Compile Include="Repositories\WaterConsumptionRepository.cs" />
     <Compile Include="Repositories\ProviderRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -132,6 +160,24 @@
     <EmbeddedResource Include="Migrations\202001191132283_AddMasions1.resx">
       <DependentUpon>202001191132283_AddMasions1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001241516559_ChangeTables.resx">
+      <DependentUpon>202001241516559_ChangeTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001241538443_RemoveCreationDateOnConsumptionType.resx">
+      <DependentUpon>202001241538443_RemoveCreationDateOnConsumptionType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001241614438_ConnectMansionToConsumptionType.resx">
+      <DependentUpon>202001241614438_ConnectMansionToConsumptionType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001241708341_Updates.resx">
+      <DependentUpon>202001241708341_Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001241901281_update.resx">
+      <DependentUpon>202001241901281_update.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reinforced.Typings.settings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,14 +6,18 @@ import { ProviderBill } from '../../models/ProviderBill';
 
 import moment from 'moment';
 import ReactDatePicker from 'react-datepicker';
+import { Mansion } from '../../models/Mansion';
 
 interface AddBillState {
     providers: Provider[];
     selectedProvider?: Provider;
+    mansions: Mansion[];
+    selectedMansion?: Mansion;
     units: number;
     other: number;
     dueDate: string;
     saved: boolean;
+    date: string;
 }
 
 export default class AddBill extends React.Component<RouteComponentProps<any>, AddBillState> {
@@ -23,10 +27,13 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         this.state = {
             providers: [],
             selectedProvider: undefined,
+            mansions: [],
+            selectedMansion: undefined,
             units: 0,
             other: 0,
             dueDate: moment.utc().startOf('day').toISOString(),
-            saved: false
+            saved: false,
+            date: moment.utc().startOf('day').toISOString()
         }
     }
 
@@ -34,9 +41,9 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         this.initData();
     }
 
-    initData = () => {
+    initData = async () => {
         if(sessionStorage.getItem('authToken') != null) {
-            fetch(`/providers`, {
+            const providersFromDb = await fetch(`/providers`, {
                 headers: {
                     'Authorization': sessionStorage.getItem('authToken')
                 } 
@@ -44,9 +51,23 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
                 if(response.ok) {
                 return response.json();
                 }
-
+    
                 return undefined;
-            }).then(result => this.setState({providers: result }));
+            });
+
+            const mansionsFromDb = await fetch(`/mansions`, {
+                headers: {
+                    'Authorization': sessionStorage.getItem('authToken')
+                } 
+            } as RequestInit).then(response => {
+                if(response.ok) {
+                return response.json();
+                }
+    
+                return undefined;
+            });
+
+            this.setState({providers: providersFromDb, mansions: mansionsFromDb});
         }
     }
  
@@ -61,6 +82,12 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         })
     }
 
+    renderMansions = () => {
+        return this.state.mansions && this.state.mansions.map((mansion: Mansion) => {
+            return <option value={mansion.id}>{mansion.address}</option>
+        })
+    }
+
 
     selectProvider = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOptionId = parseInt(e.target.selectedOptions[0].value);
@@ -71,17 +98,29 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         }
     }
 
+    selectMansion = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedOptionId = parseInt(e.target.selectedOptions[0].value);
+        const selectedM = this.state.mansions.find(x => x.id === selectedOptionId);
+
+        if(selectedM) {
+            this.setState({selectedMansion: selectedM});
+        }
+    }
+
     submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const providerBill: ProviderBill = {
             dueDate: this.state.dueDate,
+            date: this.state.date,
             other: this.state.other,
             units: this.state.units,
             providerId: this.state.selectedProvider?.providerId,
             paid: false,
             providerUnitPrice: this.state.selectedProvider?.unitPrice,
             providerName: this.state.selectedProvider?.name as string,
+            mansionId: this.state.selectedMansion?.id,
+            mansionName: this.state.selectedMansion?.address as string,
         }
 
         fetch('/providerBills', {
@@ -100,6 +139,12 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         }
     }
 
+    setDate = (date: Date) => {
+        if(date) {
+            this.setState({date: moment.utc(date).startOf('day').toISOString()});
+        }
+    }
+
     render() {
         if(sessionStorage.getItem('authToken') == null) {
             return <div>
@@ -113,6 +158,12 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         }
         return (
             <form className="container addbill-container" onSubmit={this.submit}>
+                <h3>Add bill</h3>
+                <label>Mansion</label>
+                <select required className="form-control" onChange={this.selectMansion}>
+                    <option value="">---</option>
+                    {this.renderMansions()}
+                </select>
                 <label>Provider</label>
                 <select required className="form-control" onChange={this.selectProvider}>
                     <option value="">---</option>
@@ -141,12 +192,21 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
                     />
                 </div>
                 <div className="form-group">
+                    <label>Date</label>
+                    <br/>
+                    <ReactDatePicker 
+                    className="form-control"
+                        onChange={this.setDate}
+                        selected={moment(this.state.date).toDate()}
+                    />
+                </div>
+                <div className="form-group">
                     <label>Due date</label>
                     <br/>
                     <ReactDatePicker 
                     className="form-control"
                         onChange={this.setDueDate}
-                        minDate={moment.utc().startOf('day').toDate()}
+                        minDate={moment(this.state.date).toDate()}
                         selected={moment(this.state.dueDate).toDate()}
                     />
                 </div>

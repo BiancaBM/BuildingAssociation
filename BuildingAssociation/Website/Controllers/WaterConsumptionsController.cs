@@ -21,6 +21,7 @@ namespace Website.Controllers
             _waterConsumptionService = service;
         }
 
+        [MyAuthorize(Roles = "Admin")]
         // GET api/waterconsumptions
         public HttpResponseMessage Get()
         {
@@ -64,11 +65,11 @@ namespace Website.Controllers
             try
             {
                 _waterConsumptionService.Delete(id);
-                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Bravo patratel");
+                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }
             catch
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Fi atenta!");
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

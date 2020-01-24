@@ -19,6 +19,9 @@ namespace Website.Extensions
                 Paid = bill.Paid,
                 ProviderUnitPrice = bill.ProviderUnitPrice,
                 TotalPrice = Math.Round((bill.Units * bill.ProviderUnitPrice + bill.Other).Value, 2),
+                MansionId = bill.Mansion.UniqueId,
+                MansionName = bill.Mansion.Address,
+                Date = bill.CreationDate.Value.ToString("MM/dd/yyyy")
             };
         }
 
@@ -32,7 +35,9 @@ namespace Website.Extensions
                 Units = viewModel.Units,
                 ProviderUnitPrice = viewModel.ProviderUnitPrice,
                 Paid = viewModel.Paid,
-                DueDate = Convert.ToDateTime(viewModel.DueDate)
+                DueDate = Convert.ToDateTime(viewModel.DueDate),
+                MansionId = viewModel.MansionId,
+                CreationDate = Convert.ToDateTime(viewModel.Date) 
             };
         }
     }

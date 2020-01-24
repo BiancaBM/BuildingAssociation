@@ -81,6 +81,7 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
                 >
                     <TableHeaderColumn isKey hidden dataField='billId'>Product ID</TableHeaderColumn>
                     <TableHeaderColumn dataField='providerId' hidden>Provider ID</TableHeaderColumn>
+                    <TableHeaderColumn dataField='mansionName' filter={ { type: 'TextFilter' } } dataSort={true}>Mansion Name</TableHeaderColumn>
                     <TableHeaderColumn dataField='providerName' filter={ { type: 'TextFilter' } } dataSort={true}>Provider Name</TableHeaderColumn>
                     <TableHeaderColumn dataField='units' dataSort={true}>Units</TableHeaderColumn>
                     <TableHeaderColumn dataField='other' dataSort={true}>Other</TableHeaderColumn>
@@ -95,6 +96,7 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
                         dataSort={true}
                         filter={ { type: 'NumberFilter', delay: 1000, numberComparators: [ '=', '>', '<=' ] } }
                     >Total Price</TableHeaderColumn>
+                    <TableHeaderColumn dataField='date' dataSort={true}>Date</TableHeaderColumn>
                     <TableHeaderColumn dataField='dueDate' dataSort={true}>Due Date</TableHeaderColumn>
                 </BootstrapTable>
             </div>

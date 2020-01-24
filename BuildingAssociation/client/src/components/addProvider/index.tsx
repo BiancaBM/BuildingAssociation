@@ -56,7 +56,8 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
         }
 
         return (
-            <form className="container addmaison-container" onSubmit={this.submit}>
+            <form className="container addprovider-container" onSubmit={this.submit}>
+                <h3>Add provider</h3>
                 <div className="form-group">
                     <label>Provider Name</label>
                     <input

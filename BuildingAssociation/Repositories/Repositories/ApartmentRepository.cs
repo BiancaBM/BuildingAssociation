@@ -55,7 +55,7 @@ namespace Repositories.Repositories
             updatedApartment.Floor = apartment.Floor;
             updatedApartment.Number = apartment.Number;
             updatedApartment.Surface = apartment.Surface;
-            updatedApartment.UserId = apartment.UserId;
+            updatedApartment.IndividualQuota = apartment.IndividualQuota;
 
             _ctx.SaveChanges();
         }

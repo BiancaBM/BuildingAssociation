@@ -196,6 +196,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ApartmentsController.cs" />
+    <Compile Include="Controllers\ConsumptionTypeController.cs" />
     <Compile Include="Controllers\ProviderBillsController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\MansionsController.cs" />
@@ -203,8 +204,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProvidersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Enums\CalculationType.cs" />
     <Compile Include="Extensions\ProviderExtensions.cs" />
     <Compile Include="Extensions\MansionExtensions.cs" />
+    <Compile Include="Extensions\ConsumptionTypeExtensions.cs" />
     <Compile Include="Extensions\WaterConsumptionExtensions.cs" />
     <Compile Include="Extensions\ApartmentExtensions.cs" />
     <Compile Include="Extensions\UserExtensions.cs" />
@@ -221,6 +224,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ProviderViewModel.cs" />
     <Compile Include="ViewModels\MansionViewModel.cs" />
+    <Compile Include="ViewModels\ConsumptionTypeViewModel.cs" />
     <Compile Include="ViewModels\WaterConsumtionViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ProviderBillViewModel.cs" />

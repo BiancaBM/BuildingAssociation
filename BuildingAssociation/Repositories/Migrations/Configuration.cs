@@ -8,6 +8,7 @@ namespace Repositories.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<BuildingAssociationContext>
     {
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -19,6 +20,7 @@ namespace Repositories.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+            // Apply changes to database
 
             int userId1 = 1;
             int providerId1 = 1, providerId2 = 2;
@@ -32,11 +34,9 @@ namespace Repositories.Migrations
                 Name = "Bianca Morar",
                 Password = "YWJjZDEyMzQ=",
                 UniqueId = userId1,
-                MansionId = 1,
             };
 
             context.Users.AddOrUpdate(new[] { user1 });
-
 
             Provider provider1 = new Provider
             {

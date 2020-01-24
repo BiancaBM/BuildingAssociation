@@ -52,7 +52,8 @@ export default class AddMansion extends React.Component<RouteComponentProps<any>
         }
 
         return (
-            <form className="container addmaison-container" onSubmit={this.submit}>
+            <form className="container addmansion-container" onSubmit={this.submit}>
+                <h3>Add mansion</h3>
                 <div className="form-group">
                     <label>Address</label>
                     <input

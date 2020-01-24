@@ -14,9 +14,9 @@ namespace Website.Extensions
                 Email = item.Email,
                 Name = item.Name,
                 MembersCount = item.MembersCount,
-                Apartments = item.Apartments.Select(x => x.ToViewModel()).ToList(),
-                WaterConsumptions = item.WaterConsumptions.Select(x => x.ToViewModel()).ToList(),
-                IsAdmin = item.Roles.IndexOf("Admin") > 0,
+                Apartments = item.Apartments != null ? item.Apartments.Select(x => x.ToViewModel()).ToList() : null,
+                WaterConsumptions = item.WaterConsumptions != null ? item.WaterConsumptions.Select(x => x.ToViewModel()).ToList() : null,
+                IsAdmin = item.Roles.Contains("Admin"),
                 MansionId = item.MansionId,
                 MansionName = item.Mansion != null ? item.Mansion.Address : string.Empty,
             };
