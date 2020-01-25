@@ -4,6 +4,7 @@
 
 import * as User from './User';
 import * as ProviderBill from './ProviderBill';
+import * as OtherConsumption from './OtherConsumption';
 
 export interface Mansion
 {
@@ -12,4 +13,5 @@ export interface Mansion
 	totalFunds?: number;
 	users: User.User[];
 	bills: ProviderBill.ProviderBill[];
+	consumptions: OtherConsumption.OtherConsumption[];
 }

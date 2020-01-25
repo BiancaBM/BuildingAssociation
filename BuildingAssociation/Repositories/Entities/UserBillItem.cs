@@ -11,7 +11,7 @@ namespace Repositories.Entities
         public User User { get; set; }
 
         [Required]
-        public ConsumptionType ConsumptionType { get; set; }
+        public OtherConsumption ConsumptionType { get; set; }
 
         [Required]
         public double Price { get; set; }

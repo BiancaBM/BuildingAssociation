@@ -13,30 +13,30 @@ namespace Website.Controllers
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [BasicAuthentication]
     [MyAuthorize(Roles = "Admin")]
-    public class MansionsController : ApiController
+    public class OtherConsumptionsController : ApiController
     {
-        private IMansionService _mansionService;
+        private IOtherConsumptionService _service;
 
-        public MansionsController(IMansionService service)
+        public OtherConsumptionsController(IOtherConsumptionService service)
         {
-            _mansionService = service;
+            _service = service;
         }
 
-        // GET api/mansions
+        // GET api/otherconsumptions
         public HttpResponseMessage Get()
         {
-            var items = _mansionService.GetAll().Select(x => x.ToViewModel());
+            var items = _service.GetAll().Select(x => x.ToViewModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 
-        // GET api/mansions/5
+        // GET api/otherconsumptions/5
         public HttpResponseMessage Get(long id)
         {
-            var item = _mansionService.Get(id).ToViewModel();
+            var item = _service.Get(id).ToViewModel();
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 
-        public HttpResponseMessage Post([FromBody]MansionViewModel item)
+        public HttpResponseMessage Post([FromBody]OtherConsumptionViewModel item)
         {
             try
             {
@@ -44,11 +44,11 @@ namespace Website.Controllers
 
                 if (entity.UniqueId.HasValue)
                 {
-                    _mansionService.Update(entity);
+                    _service.Update(entity);
                 }
                 else
                 {
-                    _mansionService.Insert(entity);
+                    _service.Insert(entity);
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
@@ -59,17 +59,17 @@ namespace Website.Controllers
             }
         }
 
-        // DELETE api/mansions/5
+        // DELETE api/otherconsumptions/5
         public HttpResponseMessage Delete(long id)
         {
             try
             {
-                _mansionService.Delete(id);
+                _service.Delete(id);
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }
-            catch (Exception e)
+            catch
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, e.Message);
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

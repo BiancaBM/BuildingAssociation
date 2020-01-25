@@ -1,4 +1,5 @@
 @import '../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 .main-container {
     background-color: rgb(250, 252, 252);
@@ -17,6 +18,37 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.fa-edit:hover {
+    color: #24C149;
+    text-decoration: none;
+}
+
+.fa-trash-alt {
+    cursor: pointer;
+}
+
+.fa-trash-alt.disabled {
+    cursor: pointer;
+    color: #acacac;
+}
+
+.fa-trash-alt.disabled:hover {
+    color: #acacac;
+}
+
+
+.fa-trash-alt:hover {
+    color: #FD6130;
+}
+
+table {
+    background-color: white;
+}
+
+table .filter {
+    margin-top: 10px;
 }
 
   

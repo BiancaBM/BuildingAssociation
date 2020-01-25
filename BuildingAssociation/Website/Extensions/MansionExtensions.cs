@@ -14,7 +14,8 @@ namespace Website.Extensions
                 Address = item.Address,
                 TotalFunds = item.TotalFunds,
                 Users = item.Users.Select(x => x.ToViewModel()).ToList(),
-                Bills = item.Bills.Select(x => x.ToViewModel()).ToList()
+                Bills = item.Bills.Select(x => x.ToViewModel()).ToList(),
+                Consumptions = item.Consumptions.Select(x => x.ToViewModel()).ToList()
             };
         }
 

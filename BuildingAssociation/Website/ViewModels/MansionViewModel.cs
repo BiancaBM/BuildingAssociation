@@ -12,5 +12,6 @@ namespace Website.ViewModels
         public double? TotalFunds { get; set; }
         public IEnumerable<UserViewModel> Users { get; set; }
         public IEnumerable<ProviderBillViewModel> Bills { get; set; }
+        public IEnumerable<OtherConsumptionViewModel> Consumptions { get; set; }
     }
 }

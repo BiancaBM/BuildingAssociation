@@ -39,7 +39,7 @@ namespace Website
             container.RegisterType<IApartmentRepository, ApartmentRepository>();
             container.RegisterType<IWaterConsumptionRepository, WaterConsumptionRepository>();
             container.RegisterType<IMansionRepository, MansionRepository>();
-            container.RegisterType<IConsumptionTypeRepository, ConsumptionTypeRepository>();
+            container.RegisterType<IOtherConsumptionRepository, OtherConsumptionRepository>();
 
         }
 
@@ -51,7 +51,7 @@ namespace Website
             container.RegisterType<IApartmentService, ApartmentService>();
             container.RegisterType<IWaterConsumptionService, WaterConsumptionService>();
             container.RegisterType<IMansionService, MansionService>();
-            container.RegisterType<IConsumptionTypeService, ConsumptionTypeService>();
+            container.RegisterType<IOtherConsumptionService, OtherConsumptionService>();
         }
     }
 }
