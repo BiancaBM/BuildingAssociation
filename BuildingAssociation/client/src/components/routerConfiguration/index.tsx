@@ -17,6 +17,8 @@ import OtherConsumptionList from '../lists/otherConsumptionList';
 import AddApartment from '../addForms/addApartment';
 import ApartmentList from '../lists/apartmentList';
 import AddOtherConsumption from '../addForms/addOtherConsumption';
+import AddWaterConsumption from '../addForms/addWaterConsumption';
+import WaterConsumptionList from '../lists/waterConsumptionList';
 
 class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
   private previousRouteHash: string;
@@ -66,6 +68,9 @@ class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
             <Route path='/addconsumption/:id' exact={false} render={(props) => item(props, <AddOtherConsumption {...props}/>)}/>
             <Route path='/addconsumption/' exact={false} render={(props) => item(props, <AddOtherConsumption {...props}/>)}/>
 
+            <Route path='/addwaterconsumption/:id' exact={false} render={(props) => item(props, <AddWaterConsumption {...props}/>)}/>
+            <Route path='/addwaterconsumption/' exact={false} render={(props) => item(props, <AddWaterConsumption {...props}/>)}/>
+
             <Route path='/about' exact={false} render={(props) => item(props, <About {...props}/>)}/>
             <Route path='/login' exact={false} render={(props) => item(props, <Login {...props}/>)}/>
             <Route path='/billlist' exact={false} render={(props) => item(props, <BillList {...props}/>)}/>
@@ -74,6 +79,7 @@ class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
             <Route path='/users' exact={false} render={(props) => item(props, <UserList {...props}/>)}/>
             <Route path='/consumptions' exact={false} render={(props) => item(props, <OtherConsumptionList {...props}/>)}/>
             <Route path='/apartments' exact={false} render={(props) => item(props, <ApartmentList {...props}/>)}/>
+            <Route path='/waterconsumptions' exact={false} render={(props) => item(props, <WaterConsumptionList {...props}/>)}/>
             <Route path='/' exact={false} render={(props) => item(props, <Main {...props}/>)}/>
           </Switch>
         </div>

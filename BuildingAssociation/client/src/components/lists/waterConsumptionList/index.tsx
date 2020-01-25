@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Provider } from '../../../models/Provider';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Link } from 'react-router-dom';
+import { WaterConsumption } from '../../../models/WaterConsumption';
 
-interface ProviderListState {
-    providers: Provider[];
+interface WaterConsumptionListState {
+    consumptions: WaterConsumption[];
     reload: boolean;
 }
 
-export default class ProviderList extends React.Component<RouteComponentProps<any>, ProviderListState> {
+export default class WaterConsumptionList extends React.Component<RouteComponentProps<any>, WaterConsumptionListState> {
     constructor(props: RouteComponentProps<any>) {
         super(props);
 
         this.state = {
-            providers: [],
+            consumptions: [],
             reload: false
         }
     }
@@ -23,7 +23,7 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
         this.initData();
     }
 
-    componentDidUpdate(prevProps: any, prevState: ProviderListState) {
+    componentDidUpdate(prevProps: any, prevState: WaterConsumptionListState) {
         if(prevState.reload !== this.state.reload && this.state.reload) {
             this.initData();
         }
@@ -31,7 +31,7 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
     
     initData = () => {
         if(sessionStorage.getItem('authToken') != null) {
-            fetch(`/providers`, {
+            fetch(`waterconsumptions`, {
                 headers: {
                     'Authorization': sessionStorage.getItem('authToken')
                 } 
@@ -41,15 +41,15 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
                 }
 
                 return undefined;
-            }).then((result: Provider[]) => {
-                this.setState({ providers: result, reload: false })
+            }).then((result: WaterConsumption[]) => {
+                this.setState({ consumptions: result, reload: false })
             });
         }
     }
 
-    deleteRow = (item: Provider) => {
+    deleteRow = (item: WaterConsumption) => {
         if(sessionStorage.getItem('authToken') != null) {
-            fetch(`/providers/${item.providerId}`, {
+            fetch(`/waterconsumptions/${item.id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': sessionStorage.getItem('authToken')
@@ -62,15 +62,15 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
         }
     }
 
-    actionsFormatter = (cell: any, row: Provider) => {
+    actionsFormatter = (cell: any, row: WaterConsumption) => {
         return <>
-            <Link to={`/addprovider/${row.providerId}`} className="fas fa-edit"></Link>
+            <Link to={`/addwaterconsumption/${row.id}`} className="fas fa-edit"></Link>
             <i
                 className="fas fa-trash-alt ml-3"
                 onClick={() => this.deleteRow(row)}></i>
         </>;
     }
-    
+   
     render() {
         if(sessionStorage.getItem('authToken') == null) {
             return <div>
@@ -78,18 +78,20 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
             </div>
         }
 
-        return (
-            <div className="container providerlist-container">
-                <Link to={'/addprovider'} className="btn btn-info">Add provider</Link>
+        const isAdmin: boolean = sessionStorage.getItem('isAdmin') === 'true';
 
-                <BootstrapTable data={this.state.providers} containerClass="mt-3"
+        return (
+            <div className="container waterconsumption-container">
+                {!isAdmin && <Link to={'/addwaterconsumption'} className="btn btn-info">Add water consumption</Link>}
+
+                <BootstrapTable data={this.state.consumptions} containerClass="mt-3"
                     striped hover
                     version='4'
                     search
                     exportCSV
                     options={{
-                        noDataText: 'You have no provider!' ,
-                        defaultSortName: 'name',
+                        noDataText: 'No data!' ,
+                        defaultSortName: 'creationDate',
                         defaultSortOrder: 'desc',
                         sortIndicator: false,
                         sizePerPage: 5, 
@@ -103,16 +105,13 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
                      }}
                      pagination
                 >
-                    <TableHeaderColumn isKey hidden dataField='providerId'>Provider ID</TableHeaderColumn>
-                    <TableHeaderColumn dataField='name' filter={ { type: 'TextFilter' } } dataSort={true}>Provider Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField='cui' filter={ { type: 'TextFilter' } } dataSort={true}>CUI</TableHeaderColumn>
-                    <TableHeaderColumn dataField='bankAccount' filter={ { type: 'TextFilter' } } dataSort={true}>Bank Account</TableHeaderColumn>
-                    <TableHeaderColumn
-                        dataField='unitPrice'
-                        dataSort={true}
-                        filter={ { type: 'NumberFilter', delay: 1000, numberComparators: [ '=', '>', '<=' ] } }
-                    >Unit Price</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
+                    <TableHeaderColumn isKey hidden dataField='id'>ID</TableHeaderColumn>
+                    <TableHeaderColumn hidden={!isAdmin} dataField='userName' filter={ { type: 'TextFilter' } } dataSort={true}>User</TableHeaderColumn>
+                    <TableHeaderColumn hidden={!isAdmin} dataField='mansionName' filter={ { type: 'TextFilter' } } dataSort={true}>Mansion</TableHeaderColumn>
+                    <TableHeaderColumn dataField='coldWaterUnits' dataSort={true}>Cold water units</TableHeaderColumn>
+                    <TableHeaderColumn dataField='hotWaterUnits' dataSort={true}>Hot water units</TableHeaderColumn>
+                    <TableHeaderColumn dataField='creationDate' dataSort={true}>Date</TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} hidden={!isAdmin}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

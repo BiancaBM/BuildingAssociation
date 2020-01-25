@@ -1,4 +1,5 @@
 ﻿using Repositories.Entities;
+using System;
 using Website.ViewModels;
 
 namespace Website.Extensions
@@ -11,7 +12,12 @@ namespace Website.Extensions
             {
                 Id = item.UniqueId,
                 ColdWaterUnits = item.ColdWaterUnits,
-                HotWaterUnits = item.HotWaterUnits
+                HotWaterUnits = item.HotWaterUnits,
+                CreationDate = item.CreationDate.Value.ToString("MM/dd/yyyy  HH:mm"),
+                UserName = item.User.Name,
+                UserId = item.User.UniqueId,
+                MansionId = item.User.Mansion.UniqueId,
+                MansionName = item.User.Mansion.Address
             };
         }
 
@@ -21,7 +27,9 @@ namespace Website.Extensions
             {
                 ColdWaterUnits = viewModel.ColdWaterUnits,
                 HotWaterUnits = viewModel.HotWaterUnits,
-                UniqueId = viewModel.Id
+                UniqueId = viewModel.Id,
+                CreationDate = Convert.ToDateTime(viewModel.CreationDate),
+                UserId = viewModel.UserId
             };
         }
     }

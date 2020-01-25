@@ -29,12 +29,13 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
     }
 
     componentDidMount() {
-        this.initData();
+        const { id } = this.props.match.params;
+        this.initData(id);
     }
 
-    initData = () => {
+    initData = async (id?: number) => {
         if(sessionStorage.getItem('authToken') != null) {
-            fetch(`/mansions`, {
+            const mansionsFromDb = await fetch(`/mansions`, {
                 headers: {
                     'Authorization': sessionStorage.getItem('authToken')
                 } 
@@ -44,7 +45,36 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                 }
 
                 return undefined;
-            }).then(result => this.setState({mansions: result }));
+            });
+
+            if(id) {
+                const item: User = await fetch(`/users/${id}`, {
+                    headers: {
+                        'Authorization': sessionStorage.getItem('authToken')
+                    } 
+                } as RequestInit).then(response => {
+                    if(response.ok) {
+                    return response.json();
+                    }
+        
+                    return undefined;
+                });
+
+                if(item) {
+                    this.setState({
+                        mansions: mansionsFromDb,
+                        email: item.email,
+                        membersCount: item.membersCount,
+                        name: item.name,
+                        selectedMansion: this.state.mansions.find(x => x.id === item.mansionId),
+                        password: item.password,
+                    })
+                }
+            } else {
+                this.setState({
+                    mansions: mansionsFromDb,
+                });
+            }
         }
     }
 
@@ -59,7 +89,8 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
             mansionName: this.state.selectedMansion?.address as string,
             apartments:[],
             waterConsumptions: [],
-            password: this.state.password
+            password: this.state.password,
+            userId: this.props.match.params.id
         }
 
         fetch('/users', {
@@ -104,7 +135,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
             <form className="container addmaison-container" onSubmit={this.submit}>
                 <h3>Add user</h3>
                 <label>Mansion</label>
-                <select required className="form-control" onChange={this.selectMansion}>
+                <select required className="form-control" onChange={this.selectMansion} value={this.state.selectedMansion?.id}>
                     <option value="">---</option>
                     {this.renderMansions()}
                 </select>
@@ -115,6 +146,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                         onChange={(e) => this.setState({name: e.target.value}) }
                         className="form-control"
                         required
+                        value={this.state.name}
                     />
                 </div>
                 <div className="form-group">
@@ -124,6 +156,8 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                         onChange={(e) => this.setState({email: e.target.value}) }
                         className="form-control"
                         required
+                        readOnly={this.props.match.params.id}
+                        value={this.state.email}
                     />
                 </div>
                 <div className="form-group">
@@ -134,6 +168,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                         onChange={(e) => this.setState({membersCount: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
+                        value={this.state.membersCount}
                     />
                 </div>
                 <div className="form-group">

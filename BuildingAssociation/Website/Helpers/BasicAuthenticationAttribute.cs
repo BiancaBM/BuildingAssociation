@@ -54,8 +54,8 @@ namespace Website.Helpers
                 if (userByCredentials != null)
                 {
                     var identity = new GenericIdentity(username);
-                    /*identity.AddClaim(new Claim("Email", userByCredentials.Email));
-                    identity.AddClaim(new Claim("ID", Convert.ToString(userByCredentials.UniqueId)));*/
+                    identity.AddClaim(new Claim("loggedUserId", Convert.ToString(userByCredentials.UniqueId)));
+                    identity.AddClaim(new Claim("isAdmin", Convert.ToString(userByCredentials.Roles.Contains("Admin"))));
 
                     IPrincipal principal = new GenericPrincipal(identity, userByCredentials.Roles.Split(','));
                     Thread.CurrentPrincipal = principal;

@@ -7,4 +7,9 @@ export interface WaterConsumption
 	id?: number;
 	hotWaterUnits: number;
 	coldWaterUnits: number;
+	creationDate: string;
+	userId?: number;
+	userName: string;
+	mansionId?: number;
+	mansionName: string;
 }

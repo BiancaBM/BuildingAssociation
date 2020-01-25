@@ -85,7 +85,7 @@ export default class MansionList extends React.Component<RouteComponentProps<any
             <i
                 className={`fas fa-trash-alt ml-3 ${canNotDelete && 'disabled'}`}
                 title={canNotDelete ? canNotDeleteMessage : ""}
-                onClick={() => this.deleteRow(row)}></i>
+                onClick={() => !canNotDelete ? this.deleteRow(row) : undefined}></i>
         </>;
     }
 
