@@ -9,11 +9,11 @@ namespace Repositories
         public DbSet<User> Users { get; set; }
         public DbSet<Apartment> Apartments { get; set; }
         public DbSet<ProviderBill> Bills { get; set; }
-        public DbSet<UserBillItem> UserBillItems { get; set; }
         public DbSet<WaterConsumption> WaterConsumptions { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<OtherConsumption> OtherConsumptions { get; set; }
         public DbSet<Mansion> Mansions { get; set; }
+        public DbSet<GeneratedBill> GeneratedBills { get; set; }
         
         public BuildingAssociationContext() : base("BuildingAssociation")
         {

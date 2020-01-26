@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Repositories.Contracts;
@@ -43,6 +44,13 @@ namespace Repositories.Repositories
 
         public Apartment Insert(Apartment apartment)
         {
+            var existApartmentWithSameNumber = Apartments.Any(x => x.MansionId == apartment.MansionId && x.Number == apartment.Number);
+
+            if(existApartmentWithSameNumber)
+            {
+                throw new Exception("Exist apartment with same number!");
+            }
+
             var insertedApartment = Apartments.Add(apartment);
             _ctx.SaveChanges();
 
@@ -51,11 +59,24 @@ namespace Repositories.Repositories
 
         public void Update(Apartment apartment)
         {
+            var existApartmentWithSameNumber = Apartments.Any(x => 
+                    x.UniqueId != apartment.UniqueId &&
+                    x.MansionId == apartment.MansionId &&
+                    x.Number == apartment.Number
+                );
+
+            if (existApartmentWithSameNumber)
+            {
+                throw new Exception("Exist apartment with same number!");
+            }
+
             var updatedApartment = Apartments.FirstOrDefault(x => x.UniqueId == apartment.UniqueId);
+            
             updatedApartment.Floor = apartment.Floor;
             updatedApartment.Number = apartment.Number;
             updatedApartment.Surface = apartment.Surface;
             updatedApartment.IndividualQuota = apartment.IndividualQuota;
+            updatedApartment.MembersCount = apartment.MembersCount;
 
             _ctx.SaveChanges();
         }

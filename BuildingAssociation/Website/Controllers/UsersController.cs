@@ -57,32 +57,9 @@ namespace Website.Controllers
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
-            }
-        }
-
-        [HttpPost]
-        [MyAuthorize(Roles = "User")]
-        [ActionName("password")]
-        public HttpResponseMessage ChangePassword([FromBody]PasswordViewModel item)
-        {
-            var identity = (ClaimsIdentity)User.Identity;
-            //Getting the ID value
-            var ID = Convert.ToInt64(identity.Claims.FirstOrDefault(c => c.Type == "loggedUserId").Value);
-
-            var user = _userService.Get(ID);
-            user.Password = item.Password;
-
-            try
-            {
-                _userService.Update(user);
-                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
-            }
-            catch (Exception)
-            {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, e.Message);
             }
         }
 

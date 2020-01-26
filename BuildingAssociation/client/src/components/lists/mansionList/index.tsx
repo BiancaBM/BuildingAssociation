@@ -3,6 +3,8 @@ import { RouteComponentProps } from 'react-router';
 import { Mansion } from '../../../models/Mansion';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import { BillGenerator } from '../../../models/BillGenerator';
 
 interface MansionListState {
     mansions: Mansion[];
@@ -62,6 +64,30 @@ export default class MansionList extends React.Component<RouteComponentProps<any
         }
     }
 
+    generate = (mansion: Mansion) => {
+        if(sessionStorage.getItem('authToken') != null) {
+            var params: BillGenerator = {
+                mansionId: mansion.id as number,
+                csv: "",
+                date: "",
+                mansionName: ""
+            }
+
+            fetch('/billGenerator', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': sessionStorage.getItem('authToken')
+                    },
+                    body: JSON.stringify(params)
+                } as RequestInit).then(response => {
+                if (response.ok) {
+                    this.setState({reload: true});
+                }
+            });
+        }
+    }
+
     actionsFormatter = (cell: any, row: Mansion) => {
         let canNotDeleteMessage: string = "You can not delete because you have:\n";
         let canNotDelete = false;
@@ -86,6 +112,9 @@ export default class MansionList extends React.Component<RouteComponentProps<any
                 className={`fas fa-trash-alt ml-3 ${canNotDelete && 'disabled'}`}
                 title={canNotDelete ? canNotDeleteMessage : ""}
                 onClick={() => !canNotDelete ? this.deleteRow(row) : undefined}></i>
+            <button
+                className="btn btn-primary ml-3"
+                onClick={() => this.generate(row)}>{`Generate for ${moment().subtract(1, "month").format('MMMM')} ${moment().subtract(1, "year").format('YYYY')}`}</button>
         </>;
     }
 

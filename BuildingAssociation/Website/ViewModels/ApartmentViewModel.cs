@@ -14,5 +14,6 @@ namespace Website.ViewModels
         public string UserName { get; set; }
         public long? MansionId { get; set; }
         public string MansionName { get; set; }
+        public int MembersCount { get; set; }
     }
 }

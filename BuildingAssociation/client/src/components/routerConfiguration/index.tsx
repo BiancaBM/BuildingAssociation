@@ -20,6 +20,7 @@ import AddOtherConsumption from '../addForms/addOtherConsumption';
 import AddWaterConsumption from '../addForms/addWaterConsumption';
 import WaterConsumptionList from '../lists/waterConsumptionList';
 import ChangePassword from '../addForms/changePassword';
+import GeneratedBillList from '../lists/generatedBillList';
 
 class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
   private previousRouteHash: string;
@@ -83,6 +84,7 @@ class RouterConfiguration extends React.Component<RouteComponentProps<any>> {
             <Route path='/consumptions' exact={false} render={(props) => item(props, <OtherConsumptionList {...props}/>)}/>
             <Route path='/apartments' exact={false} render={(props) => item(props, <ApartmentList {...props}/>)}/>
             <Route path='/waterconsumptions' exact={false} render={(props) => item(props, <WaterConsumptionList {...props}/>)}/>
+            <Route path='/generatedbills' exact={false} render={(props) => item(props, <GeneratedBillList {...props}/>)}/>
             <Route path='/' exact={false} render={(props) => item(props, <Main {...props}/>)}/>
           </Switch>
         </div>

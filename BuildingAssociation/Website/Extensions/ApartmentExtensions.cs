@@ -18,7 +18,8 @@ namespace Website.Extensions
                 MansionId = item.Mansion.UniqueId,
                 MansionName = item.Mansion.Address,
                 UserId = item.User.UniqueId,
-                UserName = item.User.Name
+                UserName = item.User.Name,
+                MembersCount = item.MembersCount
             };
         }
 
@@ -32,7 +33,8 @@ namespace Website.Extensions
                 Floor = viewModel.Floor,
                 IndividualQuota = viewModel.IndividualQuota,
                 UserId = viewModel.UserId,
-                MansionId = viewModel.MansionId
+                MansionId = viewModel.MansionId,
+                MembersCount = viewModel.MembersCount
             };
         }
     }

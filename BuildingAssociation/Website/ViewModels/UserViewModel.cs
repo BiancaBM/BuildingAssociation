@@ -11,7 +11,6 @@ namespace Website.ViewModels
         public bool? IsAdmin { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int MembersCount { get; set; }
         public long? MansionId { get; set; }
         public string MansionName { get; set; }
         public ICollection<WaterConsumptionViewModel> WaterConsumptions { get; set; }

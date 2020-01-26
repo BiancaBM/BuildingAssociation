@@ -122,7 +122,7 @@ export default class AddOtherConsumption extends React.Component<RouteComponentP
 
     setDate = (date: Date) => {
         if(date) {
-            this.setState({date: moment.utc(date).startOf('day').toISOString()});
+            this.setState({date: moment(date).startOf('day').toISOString()});
         }
     }
 

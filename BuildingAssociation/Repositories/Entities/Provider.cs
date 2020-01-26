@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repositories.Entities.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Repositories.Entities
@@ -12,5 +13,8 @@ namespace Repositories.Entities
         public string CUI { get; set; }
 
         public string BankAccount { get; set; }
+
+        [Required]
+        public ProviderType Type { get; set; }
     }
 }

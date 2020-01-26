@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { RouteComponentProps, Redirect } from 'react-router';
 import { Provider } from '../../../models/Provider';
+import { ProviderType } from '../../../models/ProviderType';
 
 interface AddProviderState {
     CUI: string;
     unitPrice?: number;
     name: string;
     bankAccount: string;
+    type: ProviderType;
     saved: boolean;
 }
 
@@ -19,6 +21,7 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
             bankAccount: "",
             name: "",
             unitPrice: undefined,
+            type: ProviderType.Other,
             saved: false
         }
     }
@@ -47,7 +50,8 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
                 CUI: result.cui,
                 bankAccount: result.bankAccount,
                 name: result.name,
-                unitPrice: result.unitPrice
+                unitPrice: result.unitPrice,
+                type: result.type
              });
         });
     }
@@ -61,7 +65,8 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
             cui: this.state.CUI,
             name: this.state.name,
             unitPrice: this.state.unitPrice as number,
-            providerId: this.props.match.params.id
+            providerId: this.props.match.params.id,
+            type: this.state.type
         }
 
         fetch('/providers', {
@@ -72,6 +77,11 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
                 'Authorization': sessionStorage.getItem('authToken')
             }
         } as RequestInit).then(result => { this.setState({saved: true})});
+    }
+    
+    selectType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedOptionId = parseInt(e.target.selectedOptions[0].value);
+        this.setState({type: selectedOptionId});
     }
 
     render() {
@@ -98,6 +108,15 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
                         required
                         value={this.state.name}
                     />
+                </div>
+                <div className="form-group">
+                    <label>Type</label>
+                    <select required className="form-control" onChange={this.selectType} value={this.state.type}>
+                        <option value="">---</option>
+                        <option value={ProviderType.Electricity}>Electricity</option>
+                        <option value={ProviderType.Water}>Water</option>
+                        <option value={ProviderType.Other}>Other</option>
+                    </select>
                 </div>
                 <div className="form-group">
                     <label>CUI</label>

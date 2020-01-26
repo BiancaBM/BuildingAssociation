@@ -13,7 +13,6 @@ namespace Website.Extensions
                 UserId = item.UniqueId,
                 Email = item.Email,
                 Name = item.Name,
-                MembersCount = item.MembersCount,
                 Apartments = item.Apartments != null ? item.Apartments.Select(x => x.ToViewModel()).ToList() : null,
                 WaterConsumptions = item.WaterConsumptions != null ? item.WaterConsumptions.Select(x => x.ToViewModel()).ToList() : null,
                 IsAdmin = item.Roles.Contains("Admin"),
@@ -29,7 +28,6 @@ namespace Website.Extensions
                 UniqueId = viewModel.UserId,
                 Email = viewModel.Email,
                 Name = viewModel.Name,
-                MembersCount = viewModel.MembersCount,
                 MansionId = viewModel.MansionId,
                 Password = viewModel.Password
             };

@@ -53,9 +53,9 @@ namespace Website.Controllers
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, e.Message);
             }
         }
 

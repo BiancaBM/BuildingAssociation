@@ -31,7 +31,7 @@ export default class ChangePassword extends React.Component<RouteComponentProps<
             password: this.state.password as string
         }
 
-        fetch('/users/change/password', {
+        fetch('/password', {
             method: 'POST',
             body: JSON.stringify(passw),
             headers: {

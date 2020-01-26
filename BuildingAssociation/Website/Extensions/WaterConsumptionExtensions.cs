@@ -11,8 +11,8 @@ namespace Website.Extensions
             return new WaterConsumptionViewModel
             {
                 Id = item.UniqueId,
-                ColdWaterUnits = item.ColdWaterUnits,
-                HotWaterUnits = item.HotWaterUnits,
+                BathroomUnits = item.BathroomUnits,
+                KitchenUnits = item.KitchenUnits,
                 CreationDate = item.CreationDate.Value.ToString("MM/dd/yyyy  HH:mm"),
                 UserName = item.User.Name,
                 UserId = item.User.UniqueId,
@@ -25,8 +25,8 @@ namespace Website.Extensions
         {
             return new WaterConsumption
             {
-                ColdWaterUnits = viewModel.ColdWaterUnits,
-                HotWaterUnits = viewModel.HotWaterUnits,
+                BathroomUnits = viewModel.BathroomUnits,
+                KitchenUnits = viewModel.KitchenUnits,
                 UniqueId = viewModel.Id,
                 CreationDate = Convert.ToDateTime(viewModel.CreationDate),
                 UserId = viewModel.UserId

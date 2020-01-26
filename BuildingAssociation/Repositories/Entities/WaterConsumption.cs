@@ -7,10 +7,10 @@ namespace Repositories.Entities
     public class WaterConsumption : BaseEntity
     {
         [Required]
-        public double HotWaterUnits { get; set; }
+        public double KitchenUnits { get; set; }
 
         [Required]
-        public double ColdWaterUnits { get; set; }
+        public double BathroomUnits { get; set; }
 
         [ForeignKey("User")]
         public long? UserId { get; set; }

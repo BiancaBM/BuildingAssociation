@@ -7,7 +7,6 @@ import { Provider } from '../../../models/Provider';
 import { Mansion } from '../../../models/Mansion';
 import { ProviderBill } from '../../../models/ProviderBill';
 
-
 interface AddBillState {
     providers: Provider[];
     selectedProvider?: Provider;
@@ -33,7 +32,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
             other: undefined,
             dueDate: moment.utc().startOf('day').toISOString(),
             saved: false,
-            date: moment.utc().startOf('day').toISOString()
+            date: moment.utc().startOf('day').toISOString(),
         }
     }
 
@@ -141,6 +140,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         }
     }
 
+
     submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -155,7 +155,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
             providerName: this.state.selectedProvider?.name as string,
             mansionId: this.state.selectedMansion?.id,
             mansionName: this.state.selectedMansion?.address as string,
-            billId: this.props.match.params.id
+            billId: this.props.match.params.id,
         }
 
         fetch('/providerBills', {
@@ -170,13 +170,13 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
 
     setDueDate = (date: Date) => {
         if(date) {
-            this.setState({dueDate: moment.utc(date).startOf('day').toISOString()});
+            this.setState({dueDate: moment(date).startOf('day').toISOString()});
         }
     }
 
     setDate = (date: Date) => {
         if(date) {
-            this.setState({date: moment.utc(date).startOf('day').toISOString()});
+            this.setState({date: moment(date).startOf('day').toISOString()});
         }
     }
 

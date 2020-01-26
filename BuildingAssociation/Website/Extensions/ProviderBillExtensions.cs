@@ -1,5 +1,6 @@
 ﻿using Repositories.Entities;
 using System;
+using Website.Enums;
 using Website.ViewModels;
 
 namespace Website.Extensions
@@ -21,7 +22,7 @@ namespace Website.Extensions
                 TotalPrice = Math.Round((bill.Units * bill.ProviderUnitPrice + bill.Other).Value, 2),
                 MansionId = bill.Mansion.UniqueId,
                 MansionName = bill.Mansion.Address,
-                Date = bill.CreationDate.Value.ToString("MM/dd/yyyy")
+                Date = bill.CreationDate.Value.ToString("MM/dd/yyyy"),
             };
         }
 
@@ -37,7 +38,7 @@ namespace Website.Extensions
                 Paid = viewModel.Paid,
                 DueDate = Convert.ToDateTime(viewModel.DueDate),
                 MansionId = viewModel.MansionId,
-                CreationDate = Convert.ToDateTime(viewModel.Date) 
+                CreationDate = Convert.ToDateTime(viewModel.Date)
             };
         }
     }

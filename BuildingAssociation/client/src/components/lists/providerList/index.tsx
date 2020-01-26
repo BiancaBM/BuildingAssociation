@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Provider } from '../../../models/Provider';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Link } from 'react-router-dom';
+import { ProviderType } from '../../../models/ProviderType';
 
 interface ProviderListState {
     providers: Provider[];
@@ -70,6 +71,10 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
                 onClick={() => this.deleteRow(row)}></i>
         </>;
     }
+
+    enumFormatter = (cell: any, row: any, enumObject: any) => {
+        return enumObject[cell];
+    }
     
     render() {
         if(sessionStorage.getItem('authToken') == null) {
@@ -77,6 +82,12 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
                 Nu esti logat!
             </div>
         }
+
+        const type = {
+            [ProviderType.Electricity]: 'Electricity',
+            [ProviderType.Water]: 'Water',
+            [ProviderType.Other]: 'Other'
+        };
 
         return (
             <div className="container providerlist-container">
@@ -105,6 +116,12 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
                 >
                     <TableHeaderColumn isKey hidden dataField='providerId'>Provider ID</TableHeaderColumn>
                     <TableHeaderColumn dataField='name' filter={ { type: 'TextFilter' } } dataSort={true}>Provider Name</TableHeaderColumn>
+                    <TableHeaderColumn
+                        dataField='type'
+                        dataSort={true} filterFormatted dataFormat={ this.enumFormatter }
+                        formatExtraData={ type }
+                        filter={ { type: 'SelectFilter', options: type, condition: 'eq' } }
+                    >Type</TableHeaderColumn>
                     <TableHeaderColumn dataField='cui' filter={ { type: 'TextFilter' } } dataSort={true}>CUI</TableHeaderColumn>
                     <TableHeaderColumn dataField='bankAccount' filter={ { type: 'TextFilter' } } dataSort={true}>Bank Account</TableHeaderColumn>
                     <TableHeaderColumn

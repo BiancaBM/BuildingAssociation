@@ -13,4 +13,5 @@ export interface Apartment
 	userName: string;
 	mansionId?: number;
 	mansionName: string;
+	membersCount: number;
 }

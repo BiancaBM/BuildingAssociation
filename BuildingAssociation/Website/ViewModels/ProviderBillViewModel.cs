@@ -1,4 +1,5 @@
 ﻿using Reinforced.Typings.Attributes;
+using Website.Enums;
 
 namespace Website.ViewModels
 {

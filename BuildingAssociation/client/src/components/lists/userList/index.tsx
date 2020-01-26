@@ -150,7 +150,6 @@ export default class UserList extends React.Component<RouteComponentProps<any>, 
                         formatExtraData={ mansionsType }
                         filter={ { type: 'SelectFilter', options: mansionsType } }
                     >Mansion Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField='membersCount' dataSort={true}>Members Count</TableHeaderColumn>
                     <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
                 </BootstrapTable>
             </div>

@@ -13,7 +13,7 @@ interface AddApartmentState {
     individualQuota?: number;
     number?: number;
     surface?: number;
-
+    membersCount: number;
     saved: boolean;
 }
 
@@ -28,7 +28,8 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
             floor: undefined,
             individualQuota: undefined,
             number: undefined, 
-            surface: undefined
+            surface: undefined,
+            membersCount: 0
         }
     }
 
@@ -86,7 +87,8 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                         number: item.number,
                         surface: item.surface,
                         selectedMansion: mansionsFromDb.find(x => x.id === item.mansionId),
-                        selectedUser: usersFromDb.find(x => x.userId === item.userId)
+                        selectedUser: usersFromDb.find(x => x.userId === item.userId),
+                        membersCount: item.membersCount
                     })
                 }
             } else {
@@ -107,7 +109,8 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
             surface: this.state.surface as number,
             userName: this.state.selectedUser?.name as string,
             mansionName: this.state.selectedMansion?.address as string,
-            apartmentId: this.props.match.params.id
+            apartmentId: this.props.match.params.id,
+            membersCount: this.state.membersCount
         }
 
         fetch('/apartments', {
@@ -117,7 +120,15 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                 'Content-Type': 'application/json',
                 'Authorization': sessionStorage.getItem('authToken')
             }
-        } as RequestInit).then(result => { this.setState({saved: true})});
+        } as RequestInit).then(result => {
+            if(result.ok) {
+                this.setState({saved: true});
+                return;
+            }
+            return result.json();
+        }).then(error => {
+            if(error) alert(error);
+        });
     }
 
     renderMansions = () => {
@@ -193,6 +204,17 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                     <option value="">---</option>
                     {this.renderUsers()}
                 </select>
+                <div className="form-group">
+                    <label>Member count</label>
+                    <input 
+                        type="number"
+                        min="0"
+                        onChange={(e) => this.setState({membersCount: parseFloat(e.target.value)}) }
+                        className="form-control"
+                        required
+                        value={this.state.membersCount}
+                    />
+                </div>
                 <div className="form-group">
                     <label>Number</label>
                     <input

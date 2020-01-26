@@ -1,5 +1,6 @@
 ﻿using Repositories.Contracts;
 using Repositories.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -37,6 +38,13 @@ namespace Repositories.Repositories
 
         public User Insert(User user)
         {
+            var existWithSameEmail = Users.Any(x => x.Email == user.Email);
+
+            if(existWithSameEmail)
+            {
+                throw new Exception("Exist user with same email!");
+            }
+
             var insertedUser = Users.Add(user);
             _ctx.SaveChanges();
 
@@ -47,7 +55,6 @@ namespace Repositories.Repositories
         {
             var updatedUser = Users.FirstOrDefault(x => x.UniqueId == user.UniqueId);
             updatedUser.Roles = user.Roles;
-            updatedUser.MembersCount = user.MembersCount;
             updatedUser.Name = user.Name;
             updatedUser.Password = user.Password;
             updatedUser.MansionId = user.MansionId;

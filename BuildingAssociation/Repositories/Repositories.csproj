@@ -70,18 +70,20 @@
     <Compile Include="Contracts\IProviderBillRepository.cs" />
     <Compile Include="Contracts\IMansionRepository.cs" />
     <Compile Include="Contracts\IOtherConsumptionRepository.cs" />
+    <Compile Include="Contracts\IGeneratedBillRepository.cs" />
     <Compile Include="Contracts\IWaterConsumptionRepository.cs" />
     <Compile Include="Contracts\IProviderRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Entities\Mansion.cs" />
     <Compile Include="Entities\Apartament.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\GeneratedBill.cs" />
     <Compile Include="Entities\ProviderBill.cs" />
     <Compile Include="Entities\OtherConsumption.cs" />
     <Compile Include="Entities\WaterConsumption.cs" />
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserBillItem.cs" />
+    <Compile Include="Enums\ProviderType.cs" />
     <Compile Include="Enums\CalculationType.cs" />
     <Compile Include="Migrations\202001181614002_Initial.cs" />
     <Compile Include="Migrations\202001181614002_Initial.Designer.cs">
@@ -135,12 +137,37 @@
     <Compile Include="Migrations\202001250924104_AddPriceToConsumption.Designer.cs">
       <DependentUpon>202001250924104_AddPriceToConsumption.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001261455397_RemoveUserBill.cs" />
+    <Compile Include="Migrations\202001261455397_RemoveUserBill.Designer.cs">
+      <DependentUpon>202001261455397_RemoveUserBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001261607419_UpdateProviderBillAndWaterUnits.cs" />
+    <Compile Include="Migrations\202001261607419_UpdateProviderBillAndWaterUnits.Designer.cs">
+      <DependentUpon>202001261607419_UpdateProviderBillAndWaterUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001261619097_UpdateProviderBillAndWaterUnits1.cs" />
+    <Compile Include="Migrations\202001261619097_UpdateProviderBillAndWaterUnits1.Designer.cs">
+      <DependentUpon>202001261619097_UpdateProviderBillAndWaterUnits1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001261820108_UpdateApartments.cs" />
+    <Compile Include="Migrations\202001261820108_UpdateApartments.Designer.cs">
+      <DependentUpon>202001261820108_UpdateApartments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001261846332_Updates1.cs" />
+    <Compile Include="Migrations\202001261846332_Updates1.Designer.cs">
+      <DependentUpon>202001261846332_Updates1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001262035077_GeneratedBillEntity.cs" />
+    <Compile Include="Migrations\202001262035077_GeneratedBillEntity.Designer.cs">
+      <DependentUpon>202001262035077_GeneratedBillEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApartmentRepository.cs" />
     <Compile Include="Repositories\ProviderBillRepository.cs" />
     <Compile Include="Repositories\MansionRepository.cs" />
     <Compile Include="Repositories\OtherConsumptionRepository.cs" />
+    <Compile Include="Repositories\GeneratedBillRepository.cs" />
     <Compile Include="Repositories\WaterConsumptionRepository.cs" />
     <Compile Include="Repositories\ProviderRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -188,6 +215,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001250924104_AddPriceToConsumption.resx">
       <DependentUpon>202001250924104_AddPriceToConsumption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001261455397_RemoveUserBill.resx">
+      <DependentUpon>202001261455397_RemoveUserBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001261607419_UpdateProviderBillAndWaterUnits.resx">
+      <DependentUpon>202001261607419_UpdateProviderBillAndWaterUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001261619097_UpdateProviderBillAndWaterUnits1.resx">
+      <DependentUpon>202001261619097_UpdateProviderBillAndWaterUnits1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001261820108_UpdateApartments.resx">
+      <DependentUpon>202001261820108_UpdateApartments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001261846332_Updates1.resx">
+      <DependentUpon>202001261846332_Updates1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001262035077_GeneratedBillEntity.resx">
+      <DependentUpon>202001262035077_GeneratedBillEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

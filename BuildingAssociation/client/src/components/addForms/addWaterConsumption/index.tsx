@@ -4,8 +4,8 @@ import { WaterConsumption } from '../../../models/WaterConsumption';
 import moment from 'moment';
 
 interface AddWaterConsumptionState {
-    hotWaterUnits?: number;
-    coldWaterUnits?: number;
+    kitchenUnits?: number;
+    bathroomUnits?: number;
     userId?: number;
     date: string;
     saved: boolean;
@@ -18,8 +18,8 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
 
         this.state = {
             saved: false,
-            hotWaterUnits: undefined,
-            coldWaterUnits: undefined,
+            kitchenUnits: undefined,
+            bathroomUnits: undefined,
             date: moment.utc().toISOString(),
             consumptions: []
         }
@@ -60,8 +60,8 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
             if(item) {
                 this.setState({
                     consumptions: consumptionsFromDb,
-                    coldWaterUnits: item.coldWaterUnits,
-                    hotWaterUnits: item.hotWaterUnits,
+                    bathroomUnits: item.bathroomUnits,
+                    kitchenUnits: item.kitchenUnits,
                     date: item.creationDate,
                     userId: item.userId,
                 })
@@ -78,8 +78,8 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
         e.preventDefault();
 
         const item: WaterConsumption = {
-            coldWaterUnits: this.state.coldWaterUnits as number,
-            hotWaterUnits: this.state.hotWaterUnits as number,
+            bathroomUnits: this.state.bathroomUnits as number,
+            kitchenUnits: this.state.kitchenUnits as number,
             creationDate: moment.utc().toISOString(),
             id: this.props.match.params.id,
             mansionName: "",
@@ -115,36 +115,36 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
             ? this.state.consumptions.filter(x => x.userId === this.state.userId)
             : undefined;
         
-        const coldMin = consumptionsExist ? (consumptionByUser ? consumptionByUser[0].coldWaterUnits : this.state.consumptions[0].coldWaterUnits) : 0;
-        const hotMin = consumptionsExist ? (consumptionByUser ? consumptionByUser[0].hotWaterUnits : this.state.consumptions[0].hotWaterUnits) : 0;
+        const kitchenMin = consumptionsExist ? (consumptionByUser ? consumptionByUser[0].kitchenUnits : this.state.consumptions[0].kitchenUnits) : 0;
+        const bathroomMin = consumptionsExist ? (consumptionByUser ? consumptionByUser[0].bathroomUnits : this.state.consumptions[0].bathroomUnits) : 0;
 
         return (
             <form className="container waterconsumptions-container" onSubmit={this.submit}>
                 <h3>Add water consumption</h3>
                 <h4>Last consumption: </h4>
-                <h6>Cold: {coldMin}</h6>
-                <h6>Hot: {hotMin}</h6>
+                <h6>Kitchen: {kitchenMin}</h6>
+                <h6>Bathroom: {bathroomMin}</h6>
                 <div className="form-group">
-                    <label>Cold water units</label>
+                    <label>Kitchen units</label>
                     <input
                         type="number"
                         step="any"
-                        min={coldMin}
-                        onChange={(e) => this.setState({coldWaterUnits: parseFloat(e.target.value)}) }
+                        min={kitchenMin}
+                        onChange={(e) => this.setState({bathroomUnits: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.coldWaterUnits}
+                        value={this.state.bathroomUnits}
                     />
                 </div>
                 <div className="form-group">
-                    <label>Hot water units</label>
+                    <label>Bathroom units</label>
                     <input
                         type="number"
                         step="any"
-                        min={hotMin}
-                        onChange={(e) => this.setState({hotWaterUnits: parseFloat(e.target.value)}) }
+                        min={bathroomMin}
+                        onChange={(e) => this.setState({kitchenUnits: parseFloat(e.target.value)}) }
                         className="form-control"
-                        value={this.state.hotWaterUnits}
+                        value={this.state.kitchenUnits}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>

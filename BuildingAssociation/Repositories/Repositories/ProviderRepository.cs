@@ -55,6 +55,7 @@ namespace Repositories.Repositories
             updatedProvider.BankAccount = provider.BankAccount;
             updatedProvider.CUI = provider.CUI;
             updatedProvider.UnitPrice = provider.UnitPrice;
+            updatedProvider.Type = provider.Type;
 
             _ctx.SaveChanges();
         }

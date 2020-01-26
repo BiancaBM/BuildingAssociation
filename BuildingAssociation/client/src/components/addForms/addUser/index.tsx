@@ -6,7 +6,6 @@ import { User } from '../../../models/User';
 interface AddUserState {
     name: string;
 	email: string;
-    membersCount: number;
     password: string;
     mansions: Mansion[],
     selectedMansion?: Mansion,
@@ -20,7 +19,6 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
         this.state = {
             mansions: [],
             email: "",
-            membersCount: 0,
             name: "",
             password: "",
             selectedMansion: undefined,
@@ -64,7 +62,6 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                     this.setState({
                         mansions: mansionsFromDb,
                         email: item.email,
-                        membersCount: item.membersCount,
                         name: item.name,
                         selectedMansion: mansionsFromDb.find(x => x.id === item.mansionId),
                         password: item.password,
@@ -84,7 +81,6 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
         const user: User = {
             name: this.state.name,
             email: this.state.email,
-            membersCount: this.state.membersCount,
             mansionId: this.state.selectedMansion?.id,
             mansionName: this.state.selectedMansion?.address as string,
             apartments:[],
@@ -100,7 +96,15 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                 'Content-Type': 'application/json',
                 'Authorization': sessionStorage.getItem('authToken')
             }
-        } as RequestInit).then(result => { this.setState({saved: true})});
+        } as RequestInit).then(result => {
+            if(result.ok) {
+                this.setState({saved: true});
+                return;
+            }
+            return result.json();
+        }).then(error => {
+            if(error) alert(error);
+        });
     }
 
     renderMansions = () => {
@@ -157,17 +161,6 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                         required
                         readOnly={this.props.match.params.id}
                         value={this.state.email}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Member count</label>
-                    <input 
-                        type="number"
-                        min="0"
-                        onChange={(e) => this.setState({membersCount: parseFloat(e.target.value)}) }
-                        className="form-control"
-                        required
-                        value={this.state.membersCount}
                     />
                 </div>
                 <div className="form-group">

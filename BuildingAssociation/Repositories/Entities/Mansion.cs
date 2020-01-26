@@ -16,5 +16,6 @@ namespace Repositories.Entities
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<ProviderBill> Bills { get; set; }
         public virtual ICollection<OtherConsumption> Consumptions { get; set; }
+        public virtual ICollection<Apartment> Apartments { get; set; }
     }
 }

@@ -53,8 +53,8 @@ namespace Repositories.Repositories
         public void Update(WaterConsumption consumption)
         {
             var updatedConsumption = WaterConsumptions.FirstOrDefault(x => x.UniqueId == consumption.UniqueId);
-            updatedConsumption.HotWaterUnits = consumption.HotWaterUnits;
-            updatedConsumption.ColdWaterUnits = consumption.ColdWaterUnits;
+            updatedConsumption.KitchenUnits = consumption.KitchenUnits;
+            updatedConsumption.BathroomUnits = consumption.BathroomUnits;
             updatedConsumption.UserId = consumption.UserId;
             updatedConsumption.CreationDate = consumption.CreationDate;
 

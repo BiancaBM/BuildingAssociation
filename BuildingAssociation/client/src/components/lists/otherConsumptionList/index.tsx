@@ -100,7 +100,7 @@ export default class OtherConsumptionList extends React.Component<RouteComponent
         }; 
         return (
             <div className="container consumptiontypelist-container">
-                <Link to={'/addconsumption'} className="btn btn-info">Add consumption type</Link>
+                <Link to={'/addconsumption'} className="btn btn-info">Add consumption</Link>
 
                 <BootstrapTable data={this.state.consumptions} containerClass="mt-3"
                     striped hover

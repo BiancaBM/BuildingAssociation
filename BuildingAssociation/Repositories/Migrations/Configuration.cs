@@ -30,13 +30,17 @@ namespace Repositories.Migrations
                 Roles = "Admin",
                 DateCreated = DateTime.UtcNow,
                 Email = "admin@buildingassociation.com",
-                MembersCount = 0,
                 Name = "Bianca Morar",
                 Password = "YWJjZDEyMzQ=",
                 UniqueId = userId1,
             };
 
-            context.Users.AddOrUpdate(new[] { user1 });
+            var userExist = context.Users.Any(x => x.Email == user1.Email);
+
+            if(!userExist)
+            {
+                context.Users.AddOrUpdate(new[] { user1 });
+            }
 
             Provider provider1 = new Provider
             {
@@ -44,7 +48,8 @@ namespace Repositories.Migrations
                 Name = "Apa",
                 UnitPrice = 7.13,
                 BankAccount = "RO112213244231", //max14
-                CUI = "APA12132000" //max11
+                CUI = "APA12132000", //max11
+                Type = Entities.Enums.ProviderType.Water
             };
 
             Provider provider2 = new Provider
@@ -53,10 +58,21 @@ namespace Repositories.Migrations
                 Name = "Electrica",
                 UnitPrice = 0.7,
                 BankAccount = "RO112213244678",
-                CUI = "ELECTRICA12"
+                CUI = "ELECTRICA12",
+                Type = Entities.Enums.ProviderType.Electricity
             };
 
-            context.Providers.AddOrUpdate(new[] { provider1, provider2 });
+            var provider1Exist = context.Providers.Any(x => x.UniqueId == providerId1);
+            var provider2Exist = context.Providers.Any(x => x.UniqueId == providerId1);
+
+            if (!provider1Exist)
+            {
+                context.Providers.AddOrUpdate(new[] { provider1 });
+            }
+            if (!provider2Exist)
+            {
+                context.Providers.AddOrUpdate(new[] { provider2 });
+            }
         }
     }
 }

@@ -18,6 +18,9 @@ namespace Repositories.Entities
         [Required]
         public double IndividualQuota { get; set; }
 
+        [Required]
+        public int MembersCount { get; set; }
+
         [ForeignKey("User")]
         public long? UserId { get; set; }
         public virtual User User { get; set; }

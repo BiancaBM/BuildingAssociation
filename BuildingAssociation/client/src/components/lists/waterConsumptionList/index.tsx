@@ -108,8 +108,8 @@ export default class WaterConsumptionList extends React.Component<RouteComponent
                     <TableHeaderColumn isKey hidden dataField='id'>ID</TableHeaderColumn>
                     <TableHeaderColumn hidden={!isAdmin} dataField='userName' filter={ { type: 'TextFilter' } } dataSort={true}>User</TableHeaderColumn>
                     <TableHeaderColumn hidden={!isAdmin} dataField='mansionName' filter={ { type: 'TextFilter' } } dataSort={true}>Mansion</TableHeaderColumn>
-                    <TableHeaderColumn dataField='coldWaterUnits' dataSort={true}>Cold water units</TableHeaderColumn>
-                    <TableHeaderColumn dataField='hotWaterUnits' dataSort={true}>Hot water units</TableHeaderColumn>
+                    <TableHeaderColumn dataField='kitchenUnits' dataSort={true}>Kitchen units</TableHeaderColumn>
+                    <TableHeaderColumn dataField='bathroomUnits' dataSort={true}>Bathroom units</TableHeaderColumn>
                     <TableHeaderColumn dataField='creationDate' dataSort={true}>Date</TableHeaderColumn>
                     <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} hidden={!isAdmin}></TableHeaderColumn>
                 </BootstrapTable>

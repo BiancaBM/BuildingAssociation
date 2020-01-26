@@ -40,6 +40,7 @@ namespace Website
             container.RegisterType<IWaterConsumptionRepository, WaterConsumptionRepository>();
             container.RegisterType<IMansionRepository, MansionRepository>();
             container.RegisterType<IOtherConsumptionRepository, OtherConsumptionRepository>();
+            container.RegisterType<IGeneratedBillRepository, GeneratedBillRepository>();
 
         }
 
@@ -52,6 +53,7 @@ namespace Website
             container.RegisterType<IWaterConsumptionService, WaterConsumptionService>();
             container.RegisterType<IMansionService, MansionService>();
             container.RegisterType<IOtherConsumptionService, OtherConsumptionService>();
+            container.RegisterType<IBillGeneratorService, BillGeneratorService>();
         }
     }
 }

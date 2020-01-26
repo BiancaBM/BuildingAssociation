@@ -5,8 +5,8 @@
 export interface WaterConsumption
 {
 	id?: number;
-	hotWaterUnits: number;
-	coldWaterUnits: number;
+	kitchenUnits: number;
+	bathroomUnits: number;
 	creationDate: string;
 	userId?: number;
 	userName: string;

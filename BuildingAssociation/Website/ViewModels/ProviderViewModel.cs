@@ -1,4 +1,5 @@
 ﻿using Reinforced.Typings.Attributes;
+using Website.Enums;
 
 namespace Website.ViewModels
 {
@@ -10,5 +11,6 @@ namespace Website.ViewModels
         public string Name { get; set; }
         public string CUI { get; set; }
         public string BankAccount { get; set; }
+        public ProviderType Type { get; set; }
     }
 }

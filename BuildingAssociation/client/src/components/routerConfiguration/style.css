@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-.fa-edit:hover {
+.fa-edit:hover, .fa-download:hover {
     color: #24C149;
     text-decoration: none;
 }

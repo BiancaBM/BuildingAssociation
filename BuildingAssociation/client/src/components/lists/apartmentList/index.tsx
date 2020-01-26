@@ -128,6 +128,11 @@ export default class ApartmentList extends React.Component<RouteComponentProps<a
                         formatExtraData={ mansionsType }
                         filter={ { type: 'SelectFilter', options: mansionsType } }
                     >Mansion Name</TableHeaderColumn>
+                    <TableHeaderColumn
+                        dataField='membersCount'
+                        dataSort={true}
+                        filter={ { type: 'NumberFilter', delay: 1000, numberComparators: [ '=', '>', '<=' ] } }
+                    >Members</TableHeaderColumn>
                      <TableHeaderColumn
                         dataField='number'
                         dataSort={true}
