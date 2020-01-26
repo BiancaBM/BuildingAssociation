@@ -27,11 +27,11 @@ export default class Main extends React.Component<RouteComponentProps<any>> {
             <>
                 <Link to={'/waterconsumptions'}>Water consumptions</Link>
                 <Link to={'/userbills'}>Bills</Link>
-                <Link to={'/profile'}>View profile</Link>
+                <Link to={'/changepassword'}>Change password</Link>
             </>
 
         const isAdmin = window.sessionStorage.getItem('isAdmin') === 'true';
-        debugger;
+
         return (
             <>
                 { isAdmin ? adminMenu : userMenu}

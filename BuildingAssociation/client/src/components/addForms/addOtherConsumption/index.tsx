@@ -109,7 +109,7 @@ export default class AddOtherConsumption extends React.Component<RouteComponentP
     selectMansion = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOptionId = parseInt(e.target.selectedOptions[0].value);
         const selectedM = this.state.mansions.find(x => x.id === selectedOptionId);
-        debugger;
+
         if(selectedM) {
             this.setState({selectedMansion: selectedM});
         }

@@ -35,7 +35,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
 
     initData = async (id?: number) => {
         if(sessionStorage.getItem('authToken') != null) {
-            const mansionsFromDb = await fetch(`/mansions`, {
+            const mansionsFromDb: Mansion[] = await fetch(`/mansions`, {
                 headers: {
                     'Authorization': sessionStorage.getItem('authToken')
                 } 
@@ -66,7 +66,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                         email: item.email,
                         membersCount: item.membersCount,
                         name: item.name,
-                        selectedMansion: this.state.mansions.find(x => x.id === item.mansionId),
+                        selectedMansion: mansionsFromDb.find(x => x.id === item.mansionId),
                         password: item.password,
                     })
                 }
@@ -108,7 +108,6 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
             return <option value={mansion.id}>{mansion.address}</option>
         })
     }
-
 
     selectMansion = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOptionId = parseInt(e.target.selectedOptions[0].value);

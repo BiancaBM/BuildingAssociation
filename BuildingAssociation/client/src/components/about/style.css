@@ -1,12 +1,6 @@
 .about-container {   
     display: flex;
     justify-content: center;
-}
-
-.about-container .about-details {
-    padding: 50px;
-    margin: 5px;
+    flex-direction: column;
     border-radius: 10px;
-    align-items: center;
-    max-width: 300px;
 }

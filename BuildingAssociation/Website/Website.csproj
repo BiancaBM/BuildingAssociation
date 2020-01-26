@@ -225,6 +225,7 @@
     <Compile Include="ViewModels\ProviderViewModel.cs" />
     <Compile Include="ViewModels\MansionViewModel.cs" />
     <Compile Include="ViewModels\OtherConsumptionViewModel.cs" />
+    <Compile Include="ViewModels\PasswordViewModel.cs" />
     <Compile Include="ViewModels\WaterConsumtionViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ProviderBillViewModel.cs" />

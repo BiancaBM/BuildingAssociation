@@ -7,12 +7,12 @@ using Website.Helpers;
 using Website.Extensions;
 using System.Linq;
 using Website.ViewModels;
+using System.Security.Claims;
 
 namespace Website.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [BasicAuthentication]
-    [MyAuthorize(Roles = "Admin")]
     public class UsersController : ApiController
     {
         private IUserService _userService;
@@ -22,6 +22,7 @@ namespace Website.Controllers
             _userService = userService;
         }
 
+        [MyAuthorize(Roles = "Admin")]
         // GET api/users
         public HttpResponseMessage Get()
         {
@@ -29,6 +30,7 @@ namespace Website.Controllers
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 
+        [MyAuthorize(Roles = "Admin")]
         // GET api/users/5
         public HttpResponseMessage Get(long id)
         {
@@ -36,6 +38,7 @@ namespace Website.Controllers
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, item);
         }
 
+        [MyAuthorize(Roles = "Admin")]
         public HttpResponseMessage Post([FromBody]UserViewModel item)
         {
             try
@@ -60,6 +63,30 @@ namespace Website.Controllers
             }
         }
 
+        [HttpPost]
+        [MyAuthorize(Roles = "User")]
+        [ActionName("password")]
+        public HttpResponseMessage ChangePassword([FromBody]PasswordViewModel item)
+        {
+            var identity = (ClaimsIdentity)User.Identity;
+            //Getting the ID value
+            var ID = Convert.ToInt64(identity.Claims.FirstOrDefault(c => c.Type == "loggedUserId").Value);
+
+            var user = _userService.Get(ID);
+            user.Password = item.Password;
+
+            try
+            {
+                _userService.Update(user);
+                return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
+        [MyAuthorize(Roles = "Admin")]
         // DELETE api/users/5
         public HttpResponseMessage Delete(long id)
         {

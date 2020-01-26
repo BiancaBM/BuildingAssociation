@@ -76,7 +76,7 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
 
     submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        debugger;
+
         const item: WaterConsumption = {
             coldWaterUnits: this.state.coldWaterUnits as number,
             hotWaterUnits: this.state.hotWaterUnits as number,

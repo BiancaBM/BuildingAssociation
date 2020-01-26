@@ -26,7 +26,7 @@ export default class Login extends React.Component<{}, LoginState> {
         const email = (document.getElementById('emailfield') as HTMLInputElement).value;
         const password = (document.getElementById('passwordfield') as HTMLInputElement).value;
         const encodedPassword = btoa(password);
-        debugger;
+
         fetch(`/authentication/validate?email=${email}&password=${encodedPassword}`)
         .then(response => {
             if(response.ok) return response.json()
