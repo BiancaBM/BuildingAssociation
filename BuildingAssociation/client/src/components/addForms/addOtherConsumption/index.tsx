@@ -101,8 +101,8 @@ export default class AddOtherConsumption extends React.Component<RouteComponentP
     }
 
     renderMansions = () => {
-        return this.state.mansions && this.state.mansions.map((mansion: Mansion) => {
-            return <option value={mansion.id}>{mansion.address}</option>
+        return this.state.mansions && this.state.mansions.map((mansion: Mansion, index: number) => {
+            return <option key={`${mansion.id}-${index}`} value={mansion.id}>{mansion.address}</option>
         })
     }
 

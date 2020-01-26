@@ -132,9 +132,9 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
     }
 
     renderMansions = () => {
-        return this.state.mansions && this.state.mansions.map((mansion: Mansion) => {
+        return this.state.mansions && this.state.mansions.map((mansion: Mansion, index: number) => {
             const isSelected = this.state.selectedMansion && this.state.selectedMansion?.id === mansion.id;
-            return <option value={mansion.id} selected={isSelected}>{mansion.address}</option>
+            return <option key={`${mansion.id}-${index}`} value={mansion.id} selected={isSelected}>{mansion.address}</option>
         })
     }
 
@@ -157,16 +157,16 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
             return this.state.users && 
             this.state.users
                 .filter(x => x.mansionId === this.state.selectedMansion?.id)
-                .map((user: User) => {
+                .map((user: User, index: number) => {
                     const isSelected = this.state.selectedUser?.userId === user.userId;
-                    return <option value={user.userId} selected={isSelected}>{user.name}</option>
+                    return <option key={`${user.userId}-${index}`} value={user.userId} selected={isSelected}>{user.name}</option>
             });
         }
 
         return this.state.users && 
             this.state.users
-                .map((user: User) => {
-                return <option value={user.userId}>{user.name}</option>
+                .map((user: User, index: number) => {
+                return <option key={`${user.userId}-${index}`} value={user.userId}>{user.name}</option>
             });
     }
 

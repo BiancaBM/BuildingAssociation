@@ -108,16 +108,16 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
     }
 
     renderProviders = () => {
-        return this.state.providers && this.state.providers.map((provider: Provider) => {
+        return this.state.providers && this.state.providers.map((provider: Provider, index: number) => {
             const isSelected = this.state.selectedProvider && this.state.selectedProvider.providerId === provider.providerId;
-            return <option value={provider.providerId} selected={isSelected}>{provider.name}</option>
+            return <option key={`${provider.providerId}-${index}`} value={provider.providerId} selected={isSelected}>{provider.name}</option>
         })
     }
 
     renderMansions = () => {
-        return this.state.mansions && this.state.mansions.map((mansion: Mansion) => {
+        return this.state.mansions && this.state.mansions.map((mansion: Mansion, index: number) => {
             const isSelected = this.state.selectedMansion && this.state.selectedMansion.id === mansion.id;
-            return <option value={mansion.id} selected={isSelected}>{mansion.address}</option>
+            return <option key={`${mansion.id}-${index}`} value={mansion.id} selected={isSelected}>{mansion.address}</option>
         })
     }
 
