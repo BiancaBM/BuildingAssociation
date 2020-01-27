@@ -83,6 +83,12 @@ export default class MansionList extends React.Component<RouteComponentProps<any
                 } as RequestInit).then(response => {
                 if (response.ok) {
                     this.setState({reload: true});
+                    return;
+                }
+                return response.json();
+            }).then((error) => {
+                if(error) {
+                    alert(error);
                 }
             });
         }

@@ -47,6 +47,12 @@ namespace Services.Services
             var mansion = _mansionRepository.Get(mansionId);
 
             var apartments = mansion.Apartments;
+
+            if(!apartments.Any())
+            {
+                throw new Exception("No apartments on this mansion!");
+
+            }
             var users = mansion.Apartments.Select(x => x.User);
             var numberOfPersonPerMansion = this.GetNumberOfPersonsPerMansion(apartments);
             var mansionBills = mansion.Bills.Where(x => x.CreationDate.Value.Month == month && x.CreationDate.Value.Year == year);

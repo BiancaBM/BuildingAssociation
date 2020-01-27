@@ -29,7 +29,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
             mansions: [],
             selectedMansion: undefined,
             units: undefined,
-            other: undefined,
+            other: 0,
             dueDate: moment.utc().startOf('day').toISOString(),
             saved: false,
             date: moment.utc().startOf('day').toISOString(),
