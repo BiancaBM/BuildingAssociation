@@ -87,7 +87,7 @@ export default class AddMansion extends React.Component<RouteComponentProps<any>
                         type="text"
                         onChange={(e) => this.setState({address: e.target.value}) }
                         className="form-control"
-                        value={this.state.address}
+                        defaultValue={this.state.address}
                         required
                     />
                 </div>
@@ -98,7 +98,7 @@ export default class AddMansion extends React.Component<RouteComponentProps<any>
                         step="any"
                         onChange={(e) => this.setState({totalFunds: parseFloat(e.target.value)}) }
                         className="form-control"
-                        value={this.state.totalFunds}
+                        defaultValue={this.state.totalFunds}
                         required
                     />
                 </div>

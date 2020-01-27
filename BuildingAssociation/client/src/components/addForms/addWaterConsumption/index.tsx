@@ -133,7 +133,7 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
                         onChange={(e) => this.setState({bathroomUnits: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.bathroomUnits}
+                        defaultValue={this.state.bathroomUnits}
                     />
                 </div>
                 <div className="form-group">
@@ -144,7 +144,7 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
                         min={bathroomMin}
                         onChange={(e) => this.setState({kitchenUnits: parseFloat(e.target.value)}) }
                         className="form-control"
-                        value={this.state.kitchenUnits}
+                        defaultValue={this.state.kitchenUnits}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>

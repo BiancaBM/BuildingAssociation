@@ -138,7 +138,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
             <form className="container addmaison-container" onSubmit={this.submit}>
                 <h3>Add user</h3>
                 <label>Mansion</label>
-                <select required className="form-control" onChange={this.selectMansion} value={this.state.selectedMansion?.id}>
+                <select required className="form-control" onChange={this.selectMansion} defaultValue={this.state.selectedMansion?.id}>
                     <option value="">---</option>
                     {this.renderMansions()}
                 </select>
@@ -149,7 +149,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                         onChange={(e) => this.setState({name: e.target.value}) }
                         className="form-control"
                         required
-                        value={this.state.name}
+                        defaultValue={this.state.name}
                     />
                 </div>
                 <div className="form-group">
@@ -160,7 +160,7 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
                         className="form-control"
                         required
                         readOnly={this.props.match.params.id}
-                        value={this.state.email}
+                        defaultValue={this.state.email}
                     />
                 </div>
                 <div className="form-group">

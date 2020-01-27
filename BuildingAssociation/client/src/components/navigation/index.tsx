@@ -6,23 +6,18 @@ import {
 
 import { Link } from 'react-router-dom';
 
-interface NavigationProps
-{
-    userFullName?: string;
-    username?: string;
-}
-
-export default class Navigation extends React.Component<RouteComponentProps<any> & NavigationProps> {
+export default class Navigation extends React.Component<RouteComponentProps<any>> {
     logout = () => {
         sessionStorage.clear();
     }
     render() {
-        const locationState: any = this.props.location.state;
+        const userName = sessionStorage.getItem('userName');
+        const email = sessionStorage.getItem('userEmail');
 
         return (
             <div className="navigation-container">
                 <div>
-                    {locationState && locationState.userFullName && <span>Hello {`${locationState.userFullName} (${locationState.username})`}</span>}
+                    {userName && <span>Hello {`${userName} (${email})`}</span>}
                 </div>
                 <ul className="navigation-content">
                     <li>

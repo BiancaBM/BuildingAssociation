@@ -212,7 +212,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
                         onChange={(e) => this.setState({units: parseFloat(e.target.value)}) }
                         min="0"
                         className="form-control"
-                        value={this.state.units}
+                        defaultValue={this.state.units}
                         required
                     />
                 </div>
@@ -225,7 +225,7 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
                         min="0"
                         className="form-control"
                         required
-                        value={this.state.other}
+                        defaultValue={this.state.other}
                     />
                 </div>
                 <div className="form-group">

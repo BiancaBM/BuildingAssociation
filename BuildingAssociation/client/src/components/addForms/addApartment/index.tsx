@@ -212,7 +212,7 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                         onChange={(e) => this.setState({membersCount: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.membersCount}
+                        defaultValue={this.state.membersCount}
                     />
                 </div>
                 <div className="form-group">
@@ -223,7 +223,7 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                         onChange={(e) => this.setState({number: parseInt(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.number}
+                        defaultValue={this.state.number}
                     />
                 </div>
                 <div className="form-group">
@@ -234,7 +234,7 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                         onChange={(e) => this.setState({floor: parseInt(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.floor}
+                        defaultValue={this.state.floor}
                     />
                 </div>
                 <div className="form-group">
@@ -245,7 +245,7 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                         onChange={(e) => this.setState({surface: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.surface}
+                        defaultValue={this.state.surface}
                     />
                 </div>
                 <div className="form-group">
@@ -256,7 +256,7 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
                         onChange={(e) => this.setState({individualQuota: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.individualQuota}
+                        defaultValue={this.state.individualQuota}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>

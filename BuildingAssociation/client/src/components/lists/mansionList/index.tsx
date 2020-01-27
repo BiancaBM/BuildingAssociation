@@ -82,7 +82,7 @@ export default class MansionList extends React.Component<RouteComponentProps<any
                     body: JSON.stringify(params)
                 } as RequestInit).then(response => {
                 if (response.ok) {
-                    this.setState({reload: true});
+                    alert('Bill generated! Check on "Bill genereted" section!')
                     return;
                 }
                 return response.json();

@@ -148,7 +148,7 @@ export default class AddOtherConsumption extends React.Component<RouteComponentP
                         onChange={(e) => this.setState({name: e.target.value}) }
                         className="form-control"
                         required
-                        value={this.state.name}
+                        defaultValue={this.state.name}
                     />
                 </div>
                 <label>Mansion</label>
@@ -158,7 +158,7 @@ export default class AddOtherConsumption extends React.Component<RouteComponentP
                 </select>
                 <div className="form-group">
                     <label>Calculation type</label>
-                    <select className="form-control" onChange={this.selectType} required value={this.state.calculationType}>
+                    <select className="form-control" onChange={this.selectType} required defaultValue={this.state.calculationType}>
                         <option value="">---</option>
                         <option value={CalculationType.IndividualQuota}>Individual quota</option>
                         <option value={CalculationType.NumberOfMembers}>Number of members</option>
@@ -180,7 +180,7 @@ export default class AddOtherConsumption extends React.Component<RouteComponentP
                         onChange={(e) => this.setState({price: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.price}
+                        defaultValue={this.state.price}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>

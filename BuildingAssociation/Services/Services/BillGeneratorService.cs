@@ -103,6 +103,36 @@ namespace Services.Services
             }
         }
 
+        public GeneratedBill Get(long id)
+        {
+            return _generatedBillRepository.Get(id);
+        }
+
+        public IEnumerable<GeneratedBill> Get(IEnumerable<long> ids)
+        {
+            return _generatedBillRepository.Get(ids);
+        }
+
+        public void Update(GeneratedBill item)
+        {
+            _generatedBillRepository.Update(item);
+        }
+
+        public GeneratedBill Insert(GeneratedBill item)
+        {
+            return _generatedBillRepository.Insert(item);
+        }
+
+        public void Delete(long id)
+        {
+            _generatedBillRepository.Delete(id);
+        }
+
+        public IEnumerable<GeneratedBill> GetAll()
+        {
+            return _generatedBillRepository.GetAll();
+        }
+
         private string GenerateCsv(IEnumerable<Line> linesToExport)
         {
             using (var mem = new MemoryStream())
@@ -232,12 +262,13 @@ namespace Services.Services
             }
             else
             {
+                var date = new DateTime(year, month, 28);
                 _waterConsumptionRepository.Insert(new WaterConsumption
                 {
                     UserId = user.UniqueId,
                     KitchenUnits = lastSent != null ? lastSent.KitchenUnits : 0,
                     BathroomUnits = lastSent != null ? lastSent.BathroomUnits : 0,
-                    CreationDate = DateTime.UtcNow
+                    CreationDate = date
                 });
             }
 
@@ -300,36 +331,6 @@ namespace Services.Services
             }
 
             return items;
-        }
-
-        public GeneratedBill Get(long id)
-        {
-            return _generatedBillRepository.Get(id);
-        }
-
-        public IEnumerable<GeneratedBill> Get(IEnumerable<long> ids)
-        {
-            return _generatedBillRepository.Get(ids);
-        }
-
-        public void Update(GeneratedBill item)
-        {
-            _generatedBillRepository.Update(item);
-        }
-
-        public GeneratedBill Insert(GeneratedBill item)
-        {
-            return _generatedBillRepository.Insert(item);
-        }
-
-        public void Delete(long id)
-        {
-            _generatedBillRepository.Delete(id);
-        }
-
-        public IEnumerable<GeneratedBill> GetAll()
-        {
-            return _generatedBillRepository.GetAll();
         }
     }
 }

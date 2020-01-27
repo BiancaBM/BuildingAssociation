@@ -106,12 +106,12 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
                         onChange={(e) => this.setState({name: e.target.value}) }
                         className="form-control"
                         required
-                        value={this.state.name}
+                        defaultValue={this.state.name}
                     />
                 </div>
                 <div className="form-group">
                     <label>Type</label>
-                    <select required className="form-control" onChange={this.selectType} value={this.state.type}>
+                    <select required className="form-control" onChange={this.selectType} defaultValue={this.state.type}>
                         <option value="">---</option>
                         <option value={ProviderType.Electricity}>Electricity</option>
                         <option value={ProviderType.Water}>Water</option>
@@ -124,7 +124,7 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
                         type="text"
                         onChange={(e) => this.setState({CUI: e.target.value}) }
                         className="form-control"
-                        value={this.state.CUI}
+                        defaultValue={this.state.CUI}
                     />
                 </div>
                 <div className="form-group">
@@ -134,7 +134,7 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
                         onChange={(e) => this.setState({bankAccount: e.target.value}) }
                         className="form-control"
                         required
-                        value={this.state.bankAccount}
+                        defaultValue={this.state.bankAccount}
                     />
                 </div>
                 <div className="form-group">
@@ -145,7 +145,7 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
                         onChange={(e) => this.setState({unitPrice: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        value={this.state.unitPrice}
+                        defaultValue={this.state.unitPrice}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
