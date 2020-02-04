@@ -129,7 +129,7 @@ export default class ProviderList extends React.Component<RouteComponentProps<an
                         dataSort={true}
                         filter={ { type: 'NumberFilter', delay: 1000, numberComparators: [ '=', '>', '<=' ] } }
                     >Unit Price</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} export={false}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

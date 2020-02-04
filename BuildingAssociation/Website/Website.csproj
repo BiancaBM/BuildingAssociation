@@ -220,7 +220,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicAuthenticationAttribute.cs" />
-    <Compile Include="Helpers\FileActionResult.cs" />
     <Compile Include="Helpers\MyAuthorizeAttribute.cs" />
     <Compile Include="Helpers\UserValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

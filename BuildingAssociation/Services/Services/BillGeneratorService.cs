@@ -29,6 +29,8 @@ namespace Services.Services
         private class Line
         {
             public int ApartmentNo { get; set; }
+            public int MembersCount { get; set; }
+            public double IndividualQuota { get; set; }
             public IEnumerable<Item> Items { get; set; }
         }
 
@@ -42,8 +44,11 @@ namespace Services.Services
             _generatedBillRepository = generatedBillRepository;
         }
 
-        public void Generate(long mansionId, int month, int year)
+        public void Generate(long mansionId)
         {
+            int month = DateTime.UtcNow.Month == 1 ? 12 : DateTime.UtcNow.Month - 1;
+            int year = DateTime.UtcNow.Month == 1 ? DateTime.UtcNow.Year - 1 : DateTime.Now.Year;
+
             var mansion = _mansionRepository.Get(mansionId);
 
             var apartments = mansion.Apartments;
@@ -55,7 +60,10 @@ namespace Services.Services
             }
             var users = mansion.Apartments.Select(x => x.User);
             var numberOfPersonPerMansion = this.GetNumberOfPersonsPerMansion(apartments);
-            var mansionBills = mansion.Bills.Where(x => x.CreationDate.Value.Month == month && x.CreationDate.Value.Year == year);
+            var mansionBills = mansion.Bills.Where(x => 
+                x.CreationDate.Value.Month == DateTime.UtcNow.Month
+                && x.CreationDate.Value.Year == DateTime.UtcNow.Year
+            );
 
             CheckElectricityBill(mansionBills);
             var waterBill = this.GetWaterBill(mansionBills);
@@ -72,6 +80,8 @@ namespace Services.Services
             {
                 var line = new Line();
                 line.ApartmentNo = apartment.Number;
+                line.IndividualQuota = apartment.IndividualQuota;
+                line.MembersCount = apartment.MembersCount;
 
                 var items = new List<Item>();
                 items.AddRange(this.GetSplitedBills(billsWithoutWater, numberOfPersonPerMansion, apartment));
@@ -142,6 +152,8 @@ namespace Services.Services
                 csvWriter.Configuration.Delimiter = ",";
 
                 csvWriter.WriteField("No");
+                csvWriter.WriteField("Individual Quota");
+                csvWriter.WriteField("Members Count");
 
                 IEnumerable<string> extractedHeaders = this.ExtractHeaders(linesToExport.FirstOrDefault());
 
@@ -154,6 +166,8 @@ namespace Services.Services
                 foreach (var line in linesToExport)
                 {
                     csvWriter.WriteField(line.ApartmentNo);
+                    csvWriter.WriteField(line.IndividualQuota);
+                    csvWriter.WriteField(line.MembersCount);
 
                     foreach (var item in line.Items)
                     {
@@ -190,13 +204,15 @@ namespace Services.Services
 
             foreach(var item in consumptions)
             {
+                double value = item.CalculationType == CalculationType.IndividualQuota
+                    ? (item.Price * (apartment.IndividualQuota / 100))
+                    : (item.Price / numberOfPersonPerMansion) * apartment.MembersCount;
+
                 items.Add(new Item
                 {
                     Key = item.Name.Replace(" ", "-"),
                     Title = item.Name,
-                    Value = item.CalculationType == CalculationType.IndividualQuota
-                    ? (item.Price * (apartment.IndividualQuota / 100)).ToString()
-                    : (item.Price / (apartment.MembersCount * numberOfPersonPerMansion)).ToString()
+                    Value = Math.Round(value, 2).ToString()
                 });
             }
 
@@ -205,16 +221,18 @@ namespace Services.Services
 
         private Item GetSplitedWaterBill(ProviderBill waterBill, double lostWater, int numberOfPersonPerMansion, Apartment apartment, int month, int year)
         {
-            double priceForSentWater = GetUserWaterConsumtionSent(apartment.User, month, year);
-            double priceForLostWater = lostWater / (numberOfPersonPerMansion * apartment.MembersCount);
+            double unitsForWaterSent = GetUserWaterConsumtionSent(apartment.User, month, year);
+            double unitsForLostWater = (lostWater / numberOfPersonPerMansion) * apartment.MembersCount;
 
-            double totalPriceWater = priceForLostWater + priceForSentWater;
+            double totalUnits = unitsForLostWater + unitsForWaterSent;
+
+            var otherSplitedPrice = (waterBill.Other / numberOfPersonPerMansion) * numberOfPersonPerMansion;
 
             return new Item
             {
                 Key = waterBill.Provider.Name.Replace(" ", "-"),
                 Title = waterBill.Provider.Name,
-                Value = Math.Round(totalPriceWater, 2).ToString()
+                Value = Math.Round(totalUnits * waterBill.Provider.UnitPrice + otherSplitedPrice, 2).ToString()
             };
         }
 
@@ -241,7 +259,7 @@ namespace Services.Services
             var precedentMonthLastSent = user.WaterConsumptions
                     .Where(x =>
                         x.CreationDate.Value.Month == (month == 1 ? 12 : month - 1)
-                        && x.CreationDate.Value.Year == year)
+                        && x.CreationDate.Value.Year == (month == 1 ? year - 1: year))
                         .OrderByDescending(x => x.CreationDate)
                         .FirstOrDefault();
 
@@ -270,9 +288,9 @@ namespace Services.Services
                     BathroomUnits = lastSent != null ? lastSent.BathroomUnits : 0,
                     CreationDate = date
                 });
-            }
 
-            return 0;
+                return GetUserWaterConsumtionSent(user, month, year);
+            }
         }
 
         
@@ -326,7 +344,7 @@ namespace Services.Services
                 {
                     Key = bill.Provider.Name.Replace(" ", "-"),
                     Title = bill.Provider.Name,
-                    Value = Math.Round((billPrice / (numberOfPersonPerMansion * apartment.MembersCount)), 2).ToString()
+                    Value = Math.Round((billPrice / numberOfPersonPerMansion) * apartment.MembersCount, 2).ToString()
                 });
             }
 

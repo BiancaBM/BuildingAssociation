@@ -96,9 +96,11 @@ export default class AddProvider extends React.Component<RouteComponentProps<any
            return <Redirect to="/providers" /> 
         }
 
+        const formTitle = `${this.props.match.params.id ? "Modify" : "Add" } provider`;
+
         return (
             <form className="container addprovider-container" onSubmit={this.submit}>
-                <h3>Add provider</h3>
+                <h3>{formTitle}</h3>
                 <div className="form-group">
                     <label>Provider Name</label>
                     <input

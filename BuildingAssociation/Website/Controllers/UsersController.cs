@@ -26,7 +26,7 @@ namespace Website.Controllers
         // GET api/users
         public HttpResponseMessage Get()
         {
-            var items = _userService.GetAll().Select(x => x.ToViewModel());
+            var items = _userService.GetAll().Where(x => !x.Roles.Contains("Admin")).Select(x => x.ToViewModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, items);
         }
 

@@ -118,9 +118,11 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
         const kitchenMin = consumptionsExist ? (consumptionByUser ? consumptionByUser[0].kitchenUnits : this.state.consumptions[0].kitchenUnits) : 0;
         const bathroomMin = consumptionsExist ? (consumptionByUser ? consumptionByUser[0].bathroomUnits : this.state.consumptions[0].bathroomUnits) : 0;
 
+        const formTitle = `${this.props.match.params.id ? "Modify" : "Add" } water consumption`;
+
         return (
             <form className="container waterconsumptions-container" onSubmit={this.submit}>
-                <h3>Add water consumption</h3>
+                <h3>{formTitle}</h3>
                 <h4>Last consumption: </h4>
                 <h6>Kitchen: {kitchenMin}</h6>
                 <h6>Bathroom: {bathroomMin}</h6>
@@ -130,10 +132,10 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
                         type="number"
                         step="any"
                         min={kitchenMin}
-                        onChange={(e) => this.setState({bathroomUnits: parseFloat(e.target.value)}) }
+                        onChange={(e) => this.setState({kitchenUnits: parseFloat(e.target.value)}) }
                         className="form-control"
                         required
-                        defaultValue={this.state.bathroomUnits}
+                        defaultValue={this.state.kitchenUnits}
                     />
                 </div>
                 <div className="form-group">
@@ -142,9 +144,9 @@ export default class AddWaterConsumption extends React.Component<RouteComponentP
                         type="number"
                         step="any"
                         min={bathroomMin}
-                        onChange={(e) => this.setState({kitchenUnits: parseFloat(e.target.value)}) }
+                        onChange={(e) => this.setState({bathroomUnits: parseFloat(e.target.value)}) }
                         className="form-control"
-                        defaultValue={this.state.kitchenUnits}
+                        defaultValue={this.state.bathroomUnits}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>

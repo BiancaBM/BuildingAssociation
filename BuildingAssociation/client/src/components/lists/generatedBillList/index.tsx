@@ -69,21 +69,25 @@ export default class GeneratedBillList extends React.Component<RouteComponentPro
                     headers: {
                         'Authorization': sessionStorage.getItem('authToken')
                     },
-                } as RequestInit).then(response => {
+                } as RequestInit).then((response : Response) : any => {
                 if (response.ok) {
-                    return response.blob();
+                    let contentDisposition =response.headers.get('content-disposition');
+                    const fileName: string = contentDisposition?.split('filename=').reverse()[0] ?? "raport.csv";
+                    
+                    response.blob().then(data => download(data, fileName));
+                    return;
                 }
-
-                return response.json();
-            }).then(result => download(result));
+            });
         }
     }
 
     actionsFormatter = (cell: any, row: BillGenerator) => {
+        const isAdmin = sessionStorage.getItem("isAdmin") === "true";
         return <>
+            {isAdmin &&
             <i
                 className="fas fa-trash-alt ml-3"
-                onClick={() => this.deleteRow(row)}></i>
+                onClick={() => this.deleteRow(row)}></i>}
             <i
                 className="fas fa-download ml-3"
                 onClick={() => this.downloadCsv(row) }></i>
@@ -151,7 +155,7 @@ export default class GeneratedBillList extends React.Component<RouteComponentPro
                         formatExtraData={ mansionsType }
                         filter={ { type: 'SelectFilter', options: mansionsType } }
                     >Mansion Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} export={false}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

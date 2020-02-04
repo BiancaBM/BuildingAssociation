@@ -97,7 +97,7 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
                     search
                     version='4'
                     options={{
-                        noDataText: 'You paid all the bills! Congrats!' ,
+                        noDataText: 'No data!' ,
                         defaultSortName: 'providerName',
                         defaultSortOrder: 'desc',
                         sortIndicator: false,
@@ -131,7 +131,7 @@ export default class BillList extends React.Component<RouteComponentProps<any>, 
                     >Total Price</TableHeaderColumn>
                     <TableHeaderColumn dataField='date' dataSort={true}>Date</TableHeaderColumn>
                     <TableHeaderColumn dataField='dueDate' dataSort={true}>Due Date</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} export={false}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

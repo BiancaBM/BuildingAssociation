@@ -138,9 +138,11 @@ export default class AddOtherConsumption extends React.Component<RouteComponentP
            return <Redirect to="/consumptions" /> 
         }
 
+        const formTitle = `${this.props.match.params.id ? "Modify" : "Add" } consumption`;
+
         return (
             <form className="container addconsumption-container" onSubmit={this.submit}>
-                <h3>Add consumption</h3>
+                <h3>{formTitle}</h3>
                 <div className="form-group">
                     <label>Name</label>
                     <input

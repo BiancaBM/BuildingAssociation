@@ -137,7 +137,7 @@ export default class MansionList extends React.Component<RouteComponentProps<any
 
         return (
             <div className="container mansonlist-container">
-                <Link to={'/addmansion'} className="btn btn-info">Add manson</Link>
+                <Link to={'/addmansion'} className="btn btn-info">Add mansion</Link>
 
                 <BootstrapTable 
                     search
@@ -169,7 +169,7 @@ export default class MansionList extends React.Component<RouteComponentProps<any
                         dataSort={true}
                         filter={ { type: 'NumberFilter', delay: 1000, numberComparators: [ '=', '>', '<=' ] } }
                     >Total Funds</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} export={false}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

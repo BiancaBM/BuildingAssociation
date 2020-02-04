@@ -143,7 +143,7 @@ export default class OtherConsumptionList extends React.Component<RouteComponent
                         dataSort={true}
                         filter={ { type: 'NumberFilter', delay: 1000, numberComparators: [ '=', '>', '<=' ] } }
                     >Price</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} export={false}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

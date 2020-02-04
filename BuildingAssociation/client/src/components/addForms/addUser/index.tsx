@@ -134,9 +134,11 @@ export default class AddUser extends React.Component<RouteComponentProps<any>, A
            return <Redirect to="/users" /> 
         }
 
+        const formTitle = `${this.props.match.params.id ? "Modify" : "Add" } user`;
+
         return (
             <form className="container addmaison-container" onSubmit={this.submit}>
-                <h3>Add user</h3>
+                <h3>{formTitle}</h3>
                 <label>Mansion</label>
                 <select required className="form-control" onChange={this.selectMansion} defaultValue={this.state.selectedMansion?.id}>
                     <option value="">---</option>

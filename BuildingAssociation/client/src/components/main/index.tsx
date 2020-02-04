@@ -21,7 +21,10 @@ export default class Main extends React.Component<RouteComponentProps<any>> {
                 <Link to={'/consumptions'}>Consumptions</Link>
                 <Link to={'/apartments'}>Apartments</Link>
                 <Link to={'/waterconsumptions'}>Water consumptions</Link>
-                <Link to={'/generatedbills'}>Generated bills</Link></>
+                <Link to={'/generatedbills'}>Generated bills</Link>
+                <Link to={'/changepassword'}>Change password</Link>
+            </>
+                
 
         const userMenu = 
             <>

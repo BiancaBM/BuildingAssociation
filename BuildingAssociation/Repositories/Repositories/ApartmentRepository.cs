@@ -67,7 +67,7 @@ namespace Repositories.Repositories
 
             if (existApartmentWithSameNumber)
             {
-                throw new Exception("Exist apartment with same number!");
+                throw new Exception("Already exist an apartment with the selected number!");
             }
 
             var updatedApartment = Apartments.FirstOrDefault(x => x.UniqueId == apartment.UniqueId);

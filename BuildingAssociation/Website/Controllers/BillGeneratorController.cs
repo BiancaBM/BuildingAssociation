@@ -72,8 +72,8 @@ namespace Website.Controllers
         {
             try
             {
-                int month = DateTime.Now.Month == 1 ? 12 : DateTime.Now.Month - 1;
-                _service.Generate(item.MansionId.Value, month,  DateTime.UtcNow.Year - 1);
+                
+                _service.Generate(item.MansionId.Value);
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.Accepted);
             }

@@ -154,7 +154,7 @@ export default class ApartmentList extends React.Component<RouteComponentProps<a
                         filter={ { type: 'NumberFilter', delay: 1000, numberComparators: [ '=', '>', '<=' ] } }
                     >Individual quota</TableHeaderColumn>
                     <TableHeaderColumn dataField='userName' filter={ { type: 'TextFilter' } } dataSort={true}>User Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter}></TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} export={false}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

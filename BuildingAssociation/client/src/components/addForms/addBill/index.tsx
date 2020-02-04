@@ -191,9 +191,12 @@ export default class AddBill extends React.Component<RouteComponentProps<any>, A
         {
            return <Redirect to="/billlist" /> 
         }
+
+        const formTitle = `${this.props.match.params.id ? "Modify" : "Add" } bill`;
+
         return (
             <form className="container addbill-container" onSubmit={this.submit}>
-                <h3>Add bill</h3>
+                <h3>{formTitle}</h3>
                 <label>Mansion</label>
                 <select required className="form-control" onChange={this.selectMansion}>
                     <option value="">---</option>

@@ -13,7 +13,7 @@ interface AddApartmentState {
     individualQuota?: number;
     number?: number;
     surface?: number;
-    membersCount: number;
+    membersCount?: number;
     saved: boolean;
 }
 
@@ -29,7 +29,7 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
             individualQuota: undefined,
             number: undefined, 
             surface: undefined,
-            membersCount: 0
+            membersCount: undefined
         }
     }
 
@@ -110,7 +110,7 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
             userName: this.state.selectedUser?.name as string,
             mansionName: this.state.selectedMansion?.address as string,
             apartmentId: this.props.match.params.id,
-            membersCount: this.state.membersCount
+            membersCount: this.state.membersCount as number
         }
 
         fetch('/apartments', {
@@ -191,9 +191,11 @@ export default class AddApartment extends React.Component<RouteComponentProps<an
            return <Redirect to="/apartments" /> 
         }
 
+        const formTitle = `${this.props.match.params.id ? "Modify" : "Add" } appartment`;
+
         return (
             <form className="container addmaison-container" onSubmit={this.submit}>
-                <h3>Add apartment</h3>
+                <h3>{formTitle}</h3>
                 <label>Mansion</label>
                 <select required className="form-control" onChange={this.selectMansion}>
                     <option value="">---</option>

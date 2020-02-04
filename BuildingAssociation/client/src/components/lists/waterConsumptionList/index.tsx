@@ -111,7 +111,7 @@ export default class WaterConsumptionList extends React.Component<RouteComponent
                     <TableHeaderColumn dataField='kitchenUnits' dataSort={true}>Kitchen units</TableHeaderColumn>
                     <TableHeaderColumn dataField='bathroomUnits' dataSort={true}>Bathroom units</TableHeaderColumn>
                     <TableHeaderColumn dataField='creationDate' dataSort={true}>Date</TableHeaderColumn>
-                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} hidden={!isAdmin}></TableHeaderColumn>
+                    <TableHeaderColumn dataField="actions" dataFormat={this.actionsFormatter} hidden={!isAdmin} export={false}></TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

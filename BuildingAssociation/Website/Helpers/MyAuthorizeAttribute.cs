@@ -1,6 +1,4 @@
 ﻿using System.Web;
-using System.Security.Claims;
-using System.Linq;
 
 namespace Website.Helpers
 {
