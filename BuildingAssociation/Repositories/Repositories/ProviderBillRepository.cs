@@ -51,10 +51,13 @@ namespace Repositories.Repositories
         public void Update(ProviderBill bill)
         {
             var updatedBill = ProviderBills.FirstOrDefault(x => x.UniqueId == bill.UniqueId);
+            updatedBill.MansionId = bill.MansionId;
+            updatedBill.ProviderId = bill.ProviderId;
+            updatedBill.Units = bill.Units;
+            updatedBill.Other = bill.Other;
+            updatedBill.Paid = bill.Paid;
             updatedBill.CreationDate = bill.CreationDate;
             updatedBill.DueDate = bill.DueDate;
-            updatedBill.Paid = bill.Paid;
-            updatedBill.ProviderId = bill.ProviderId;
 
             _ctx.SaveChanges();
         }

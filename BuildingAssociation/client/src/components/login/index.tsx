@@ -28,23 +28,23 @@ export default class Login extends React.Component<{}, LoginState> {
         const encodedPassword = btoa(password);
 
         fetch(`/authentication/validate?email=${email}&password=${encodedPassword}`)
-        .then(response => {
-            if(response.ok) return response.json()
-            else return undefined;
-        }).then((user: User) => {
-                if(user) {
-                    const stringToEncode = btoa(`${email}:${encodedPassword}`);
-                    sessionStorage.setItem('authToken', `BASIC ${stringToEncode}`);
-                    sessionStorage.setItem('isAdmin', `${user.isAdmin}`);
-                    sessionStorage.setItem('userName', `${user.name}`);
-                    sessionStorage.setItem('userEmail', `${user.email}`);
-                    this.setState({userLogged: true});
-                } else {
-                    this.setState({userLogged: false});
+        .then(response => response.json())
+        .then((result: User | string) => {
+            if(typeof result == 'string') {
+                this.setState({userLogged: false}, () => {
                     sessionStorage.clear();
-                }
-            }
-        )
+                    alert(result);
+                });
+            } else {
+                const user = result as User;
+                const stringToEncode = btoa(`${email}:${encodedPassword}`);
+                sessionStorage.setItem('authToken', `BASIC ${stringToEncode}`);
+                sessionStorage.setItem('isAdmin', `${user.isAdmin}`);
+                sessionStorage.setItem('userName', `${user.name}`);
+                sessionStorage.setItem('userEmail', `${user.email}`);
+                this.setState({userLogged: true});
+            }      
+        });
     }
 
     render() {

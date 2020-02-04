@@ -1,5 +1,6 @@
 ﻿
 using Services.Contracts;
+using System;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -22,8 +23,14 @@ namespace Website.Controllers
         [ActionName("validate")]
         public HttpResponseMessage ValidateToken(string email, string password)
         {
-            var user = _userService.GetByCredentials(email, password).ToViewModel();
-            return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, user);
+            var user = _userService.GetByCredentials(email, password);
+
+            if(user == null)
+            {
+            return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, "Don't exist an user with this email/password.");
+            }
+
+            return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, user.ToViewModel()); 
         }
     }
 }
